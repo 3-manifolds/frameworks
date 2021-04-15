@@ -22,7 +22,10 @@ PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
 
 all: Zlib Readline OpenSSL TclTk Python Sign
 
-.PHONY: Zlib Readline OpenSSL TclTk Python Sign
+.PHONY: Setup Zlib Readline OpenSSL TclTk Python Sign
+
+Setup:
+	mkdir -p Frameworks
 
 Zlib:
 	cd ZLib ; \

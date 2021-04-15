@@ -1,0 +1,13 @@
+DEV_ID.txt
+Frameworks
+*.tar
+*.tar.gz
+*.tgz
+dist
+OpenSSL/openssl*
+Python-3.9/Python*
+Readline/readline*
+TclTk/Tcl*
+TclTk/Tk*
+ZLib/zlib*
+
