@@ -20,7 +20,7 @@ DEV_ID := $(shell cat DEV_ID.txt)
 CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --entitlements entitlement.plist --force
 PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
 
-all: Zlib Readline OpenSSL TclTk Python Sign
+all: Setup Zlib Readline OpenSSL TclTk Python Sign
 
 .PHONY: Setup Zlib Readline OpenSSL TclTk Python Sign
 
