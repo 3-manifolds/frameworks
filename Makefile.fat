@@ -84,9 +84,6 @@ Python:
 	rm -rf dist ; \
 	bash build_python.sh ; \
 	find dist/Python.framework -name '*.a' -delete ; \
-	mv dist/Python.framework/Versions/3.9/lib/python3.9 dist ; \
-	mkdir dist/Python.framework/Versions/3.9/lib/python3.9 ; \
-	mv dist/Python3.9/lib-dynload dist/Python.framework/Versions/3.9/lib/python3.9 ; \
 	cd ..
 	rm -rf Frameworks/Python.framework
 	mv Python-3.9/dist/Python.framework Frameworks
