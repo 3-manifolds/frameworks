@@ -1,7 +1,7 @@
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/OpenSSL.framework
-VERSION=1.1
-LONG_VERSION=1.1.1i
+VERSION=3.0
+LONG_VERSION=3.0.0
 LIBSSL=libssl.${VERSION}.dylib
 LIBCRYPTO=libcrypto.${VERSION}.dylib
 SRC_DIR=openssl-${LONG_VERSION}
@@ -9,7 +9,7 @@ SRC_ARCHIVE=openssl-${LONG_VERSION}.tar.gz
 CNF_DIR=Versions/${VERSION}/config
 RSRC_DIR=dist/OpenSSL.framework/Versions/${VERSION}/Resources
 URL=https://www.openssl.org/source/${SRC_ARCHIVE}
-HASH=e8be6a35fe41d10603c3cc635e93289ed00bf34b79671a3a4de64fcee00d5242
+HASH=59eedfcb46c25214c9bd37ed6078297b4df01d012267fe9e9eee31f61bc70536
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
     curl -O ${URL}
@@ -28,7 +28,7 @@ if [ -e Makefile ]; then
 fi
 export CFLAGS="-mmacosx-version-min=10.9"
 ./config --openssldir=/Library/Frameworks/OpenSSL.framework/Versions/${VERSION} --prefix=/Library/Frameworks/OpenSSL.framework/Versions/${VERSION}
-sed -i -e 's|DESTDIR=|DESTDIR=../dist|g' Makefile
+sed -i '.orig' -e 's|DESTDIR=|DESTDIR=../dist|g' Makefile
 make -j6 install_runtime
 make -j6 install_programs
 make -j6 install_ssldirs

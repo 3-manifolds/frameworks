@@ -3,7 +3,7 @@ ZLIB=ZLib.framework/Versions/Current/lib/libz.dylib
 READLINE=Readline.framework/Versions/Current/lib/libreadline.dylib
 SSL=OpenSSL.framework/Versions/Current/lib/libssl.dylib
 CRYPTO=OpenSSL.framework/Versions/Current/lib/libcrypto.dylib
-LIB_DYNLOAD=Python.framework/Versions/3.9/lib/python3.9/lib-dynload
+LIB_DYNLOAD=Python.framework/Versions/3.10/lib/python3.10/lib-dynload
 OPENSSL_RPATH=@loader_path/../../../../../../OpenSSL.framework/Versions/Current/lib
 READLINE_RPATH=@loader_path/../../../../../../Readline.framework/Versions/Current/lib
 ZLIB_RPATH=@loader_path/../../../../../../Zlib.framework/Versions/Current/lib
@@ -80,31 +80,29 @@ TclTk:
 	mv ${TK_VERSION_DIR}/tkConfig.sh ${TK_VERSION_DIR}/Resources
 
 Python:
-	cd Python-3.9 ; \
+	cd Python-3.10 ; \
 	rm -rf dist ; \
 	bash build_python.sh ; \
 	find dist/Python.framework -name '*.a' -delete ; \
-	mv dist/Python.framework/Versions/3.9/lib/python3.9 dist ; \
-	mkdir dist/Python.framework/Versions/3.9/lib/python3.9 ; \
-	mv dist/Python3.9/lib-dynload dist/Python.framework/Versions/3.9/lib/python3.9 ; \
 	cd ..
 	rm -rf Frameworks/Python.framework
-	mv Python-3.9/dist/Python.framework Frameworks
+	mv Python-3.10/dist/Python.framework Frameworks
 	pushd Frameworks/${LIB_DYNLOAD} ; \
-	mv _ssl.cpython-39-darwin_failed.so _ssl.cpython-39-darwin.so ; \
-	mv _hashlib.cpython-39-darwin_failed.so _hashlib.cpython-39-darwin.so ; \
-	mv readline.cpython-39-darwin_failed.so readline.cpython-39-darwin.so ; \
-	mv _tkinter.cpython-39-darwin_failed.so _tkinter.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${ZLIB_RPATH} zlib.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${ZLIB_RPATH} binascii.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${OPENSSL_RPATH} _ssl.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${OPENSSL_RPATH} _hashlib.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${READLINE_RPATH} readline.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-39-darwin.so ; \
-	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-39-darwin.so ; \
+	mv _ssl.cpython-310-darwin_failed.so _ssl.cpython-310-darwin.so ; \
+	mv _hashlib.cpython-310-darwin_failed.so _hashlib.cpython-310-darwin.so ; \
+	mv readline.cpython-310-darwin_failed.so readline.cpython-310-darwin.so ; \
+	mv _tkinter.cpython-310-darwin_failed.so _tkinter.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${ZLIB_RPATH} zlib.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${ZLIB_RPATH} binascii.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${OPENSSL_RPATH} _ssl.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${OPENSSL_RPATH} _hashlib.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${READLINE_RPATH} readline.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-310-darwin.so ; \
+	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-310-darwin.so ; \
 	popd
 
 Sign:
+	rm -rf `find Frameworks -name test`
 	codesign ${CS_OPTS} `find Frameworks/Zlib.framework -type f -perm +o+x`
 	codesign ${CS_OPTS} Frameworks/Zlib.framework
 	codesign ${CS_OPTS} `find Frameworks/Readline.framework -type f -perm +o+x`
