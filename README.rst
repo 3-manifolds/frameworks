@@ -13,9 +13,9 @@ Tcl/Tk
 
 In order to build the frameworks you need to create directories
 TclTk/Tcl and TclTk/Tk which contain the source code for the version
-of Tcl and Tk that you wish to use for the frameworks.  Two ways for
-this are provided via the fetch_tcltk.sh and fossil_tcltk.sh scripts
-in that directory.
+of Tcl and Tk that you wish to use for the frameworks.  Three ways for
+this are provided via the fetch_tcltk.sh, fossil_tcltk.sh, and
+git_tcltk.sh scripts in that directory.
 
 Macher
 ======
