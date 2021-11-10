@@ -39,3 +39,7 @@ Building
 Run make in the top level directory to create all of the frameworks
 and move them into the Frameworks directory.  That directory may be
 moved into an application bundle as Some.app/Contents/Frameworks.
+
+If you are replacing the frameworks created by p2app with these
+frameworks then you can save some space by running:
+   make FOR_PY2APP=yes
