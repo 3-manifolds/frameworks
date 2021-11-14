@@ -1,11 +1,12 @@
 Frameworks
 ==========
 
-This project is a kit for building a set of relocatable signed frameworks
-suitable for inserting into an application bundle which uses python for
-the main program.  The frameworks include Python.framework, as well as
-frameworks needed for basic python extensions based on external libraries.
-These include Readline.framework, Tcl.framework, Tk.framework, OpenSSL.framework,
+This project is a kit for building a set of relocatable signed
+frameworks suitable for inserting into an application bundle which
+uses python for the main program.  The frameworks include
+Python.framework, as well as frameworks needed for basic python
+extensions based on external libraries.  These include
+Readline.framework, Tcl.framework, Tk.framework, OpenSSL.framework,
 and ZLib.framework.  The current version of Python used here is 3.10.
 
 Tcl/Tk
@@ -40,6 +41,9 @@ Run make in the top level directory to create all of the frameworks
 and move them into the Frameworks directory.  That directory may be
 moved into an application bundle as Some.app/Contents/Frameworks.
 
-If you are replacing the frameworks created by p2app with these
-frameworks then you can save some space by running:
-   make FOR_PY2APP=yes
+If you are replacing the frameworks created by py2app with these
+frameworks then you can save some space by running::
+
+  make FOR_PY2APP=yes
+
+  
