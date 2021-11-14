@@ -45,6 +45,7 @@ jobs:
       - name: Install macher
         run: |
           wget https://github.com/culler/macher/releases/latest/download/macher
+          chmod +x macher
           mv macher /usr/local/bin
           
       - name: Build Zlib
