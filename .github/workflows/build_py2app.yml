@@ -74,11 +74,11 @@ jobs:
 
       - name: Build Python
         run: |
-          make FOR_PY2APP=yes Python
+          make FOR_PY2APP=no Python
 
-      - name: Create tarball
+      - name: Sign everything
         run: |
-          tar cfz Frameworks.tgz Frameworks
+          make Sign
 
       - uses: actions/upload-artifact@v2
         with:
