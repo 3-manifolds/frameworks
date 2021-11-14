@@ -78,8 +78,9 @@ jobs:
 
       - name: Create tarball
         run: |
-          tar cfz Frameworks.tar.gz Frameworks
+          tar cfz Frameworks.tgz Frameworks
 
       - uses: actions/upload-artifact@v2
         with:
-          path: ./Frameworks.tar.gz
+          name: Frameworks.tgz
+          path: ./Frameworks.tgz
