@@ -74,7 +74,7 @@ jobs:
 
       - name: Build Python
         run: |
-          make FOR_PY2APP=no Python
+          make FOR_PY2APP=yes Python
 
       - name: Sign everything
         run: |
