@@ -23,6 +23,7 @@ if [[ ${ACTUAL_HASH} != ${HASH} ]]; then
 fi
 if ! [ -d ${SRC_DIR} ]; then
     tar xvfz ${SRC_ARCHIVE}
+    patch -p0 < patches/configure.patch
 fi
 if ! [ -d dist ]; then
     mkdir dist
