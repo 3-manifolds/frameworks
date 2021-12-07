@@ -31,7 +31,7 @@ pushd ${SRC_DIR}
 if [ -e Makefile ]; then
     make distclean
 fi
-CFLAGS="-arch x86_64 -mmacosx-version-min=10.9"
+CFLAGS="-mmacosx-version-min=10.9"
 CFLAGS="${CFLAGS} -I${FRAMEWORKS}/ZLib.framework/Headers"
 CFLAGS="${CFLAGS} -I${FRAMEWORKS}/Readline.framework/Headers"
 export CFLAGS

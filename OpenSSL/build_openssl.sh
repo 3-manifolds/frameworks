@@ -14,7 +14,7 @@ HASH=59eedfcb46c25214c9bd37ed6078297b4df01d012267fe9e9eee31f61bc70536
 if ! [ -e ${SRC_ARCHIVE} ]; then
     curl -O ${URL}
 fi
-ACTUAL_HASH=`python3 ../bin/sha256.py ${SRC_ARCHIVE}`
+ACTUAL_HASH=`/usr/bin/shasum -a 256 ${SRC_ARCHIVE}  | cut -w -f 1`
 if [[ ${ACTUAL_HASH} != ${HASH} ]]; then
     echo Invalid hash value for ${SRC_ARCHIVE}
     exit 1
@@ -29,10 +29,11 @@ fi
 export CFLAGS="-mmacosx-version-min=10.9"
 ./config --openssldir=/Library/Frameworks/OpenSSL.framework/Versions/${VERSION} --prefix=/Library/Frameworks/OpenSSL.framework/Versions/${VERSION}
 sed -i '.orig' -e 's|DESTDIR=|DESTDIR=../dist|g' Makefile
-make -j6 install_runtime
-make -j6 install_programs
-make -j6 install_ssldirs
-make -j6 install_dev
+# Unfortunately building with -j6 on M1 fails sporadically
+make -j4 install_runtime
+make -j4 install_programs
+make -j4 install_ssldirs
+make -j4 install_dev
 popd
 pushd dist/Library/Frameworks/OpenSSL.framework
 ln -s ${VERSION} Versions/Current
