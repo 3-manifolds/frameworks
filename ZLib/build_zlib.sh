@@ -29,7 +29,7 @@ pushd ${SRC_DIR}
 if [ -e Makefile ]; then
     make distclean
 fi
-export CFLAGS="-mmacosx-version-min=10.9"
+export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
 ./configure --prefix=${FRAMEWORK_BUILD}/Versions/${VERSION}
 make
 make install
