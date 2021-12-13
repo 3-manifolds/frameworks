@@ -72,13 +72,17 @@ jobs:
         run: |
           make TclTk
 
-      - name: Build Python
-        run: |
-          make FOR_PY2APP=yes Python
+      #- name: Build Python
+      #  run: |
+      #    make FOR_PY2APP=yes Python
+      #
+      #- name: Sign everything
+      #  run: |
+      #    make Sign
 
-      - name: Sign everything
+      - name: Assemble tarball
         run: |
-          make Sign
+          make Tarball
 
       - uses: actions/upload-artifact@v2
         with:
