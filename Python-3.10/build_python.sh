@@ -47,7 +47,7 @@ LDFLAGS="${LDFLAGS} -L${FRAMEWORKS}/Readline.framework/Versions/Current/lib"
 LDFLAGS="${LDFLAGS} -Wl,-platform_version,macos,10.9,11.0"
 export LDFLAGS
 ./configure --prefix=${BASE_DIR}/dist/Python.framework/Versions/${VERSION} --with-tcltk-includes="-I${TCL_HEADERS} -I${TK_HEADERS}" --with-tcltk-libs="${TCL_LIB} ${TK_LIB}" --with-openssl=${OPENSSL}
-make -j6
+make -j4
 make install
 make libpython${VERSION}.dylib
 popd
