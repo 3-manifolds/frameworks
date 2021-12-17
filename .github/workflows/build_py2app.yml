@@ -76,9 +76,9 @@ jobs:
         run: |
           make FOR_PY2APP=yes Python
       
-      - name: Sign everything
-        run: |
-          make Sign
+      #- name: Sign everything
+      #  run: |
+      #    make Sign
 
       - name: Assemble tarball
         run: |
