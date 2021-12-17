@@ -72,13 +72,13 @@ jobs:
         run: |
           make TclTk
 
-      #- name: Build Python
-      #  run: |
-      #    make FOR_PY2APP=yes Python
-      #
-      #- name: Sign everything
-      #  run: |
-      #    make Sign
+      - name: Build Python
+        run: |
+          make FOR_PY2APP=yes Python
+      
+      - name: Sign everything
+        run: |
+          make Sign
 
       - name: Assemble tarball
         run: |
