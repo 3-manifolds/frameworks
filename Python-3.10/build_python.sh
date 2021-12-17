@@ -34,6 +34,7 @@ pushd ${SRC_DIR}
 if [ -e Makefile ]; then
     make distclean
 fi
+MACOSX_DEPLOYMENT_TARGET=10.9
 CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
 CFLAGS="${CFLAGS} -I${FRAMEWORKS}/ZLib.framework/Headers"
 CFLAGS="${CFLAGS} -I${FRAMEWORKS}/Readline.framework/Headers"
@@ -46,7 +47,10 @@ LDFLAGS="${LDFLAGS} -L${FRAMEWORKS}/Readline.framework/Versions/Current/lib"
 # are not understood my macOS 10.14 and earlier.
 LDFLAGS="${LDFLAGS} -Wl,-platform_version,macos,10.9,11.0"
 export LDFLAGS
-./configure --prefix=${BASE_DIR}/dist/Python.framework/Versions/${VERSION} --with-tcltk-includes="-I${TCL_HEADERS} -I${TK_HEADERS}" --with-tcltk-libs="${TCL_LIB} ${TK_LIB}" --with-openssl=${OPENSSL}
+./configure \
+    --prefix=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}    \
+    --with-tcltk-includes="-I${TCL_HEADERS} -I${TK_HEADERS}"          \
+    --with-tcltk-libs="${TCL_LIB} ${TK_LIB}" --with-openssl=${OPENSSL}
 make -j4
 make install
 make libpython${VERSION}.dylib
