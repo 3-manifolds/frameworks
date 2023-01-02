@@ -21,8 +21,8 @@ TK_FRAMEWORK=Frameworks/Tk.framework
 TK_VERSION_DIR=${TK_FRAMEWORK}/Versions/Current
 TK_LIB=${TK_VERSION_DIR}/Tk
 WISH=${TK_VERSION_DIR}/Resources/Wish.app
-LIB_DYNLOAD=Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload
-PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python3.10
+LIB_DYNLOAD=Frameworks/Python.framework/Versions/3.11/lib/python3.11/lib-dynload
+PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python3.11
 DEV_ID := $(shell cat DEV_ID.txt)
 CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --entitlements entitlement.plist --force
 PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
@@ -90,30 +90,30 @@ TclTk:
 	mv ${TK_VERSION_DIR}/tkConfig.sh ${TK_VERSION_DIR}/Resources
 
 Python:
-	cd Python-3.10 ; \
+	cd Python-3.11 ; \
 	rm -rf dist ; \
 	bash build_python.sh ; \
 	find dist/Python.framework -name '*.a' -delete ;
 ifneq ($(FOR_PY2APP),no)
-	cd Python-3.10 ; \
-	mv dist/Python.framework/Versions/Current/lib/python3.10/lib-dynload . ; \
-	rm -rf dist/Python.framework/Versions/Current/lib/python3.10/* ; \
-	mv lib-dynload dist/Python.framework/Versions/Current/lib/python3.10
+	cd Python-3.11 ; \
+	mv dist/Python.framework/Versions/Current/lib/python3.11/lib-dynload . ; \
+	rm -rf dist/Python.framework/Versions/Current/lib/python3.11/* ; \
+	mv lib-dynload dist/Python.framework/Versions/Current/lib/python3.11
 endif
 	rm -rf Frameworks/Python.framework
-	mv Python-3.10/dist/Python.framework Frameworks
+	mv Python-3.11/dist/Python.framework Frameworks
 	pushd ${LIB_DYNLOAD} ; \
-	mv _ssl.cpython-310-darwin_failed.so _ssl.cpython-310-darwin.so ; \
-	mv _hashlib.cpython-310-darwin_failed.so _hashlib.cpython-310-darwin.so ; \
-	mv readline.cpython-310-darwin_failed.so readline.cpython-310-darwin.so ; \
-	mv _tkinter.cpython-310-darwin_failed.so _tkinter.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${ZLIB_RPATH} zlib.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${ZLIB_RPATH} binascii.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${OPENSSL_RPATH} _ssl.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${OPENSSL_RPATH} _hashlib.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${READLINE_RPATH} readline.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-310-darwin.so ; \
-	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-310-darwin.so ; \
+	mv _ssl.cpython-311-darwin_failed.so _ssl.cpython-311-darwin.so ; \
+	mv _hashlib.cpython-311-darwin_failed.so _hashlib.cpython-311-darwin.so ; \
+	mv readline.cpython-311-darwin_failed.so readline.cpython-311-darwin.so ; \
+	mv _tkinter.cpython-311-darwin_failed.so _tkinter.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${ZLIB_RPATH} zlib.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${ZLIB_RPATH} binascii.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${OPENSSL_RPATH} _ssl.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${OPENSSL_RPATH} _hashlib.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${READLINE_RPATH} readline.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-311-darwin.so ; \
+	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-311-darwin.so ; \
 	popd
 
 Sign:
@@ -129,27 +129,27 @@ Sign:
 	codesign ${CS_OPTS} ${TK_LIB}
 	codesign ${CS_OPTS} ${TK_FRAMEWORK}
 	codesign ${PY_CS_OPTS} `find ${LIB_DYNLOAD} -type f -perm +o+x`
-	codesign ${PY_CS_OPTS} ${PYTHON_EXE} 
+	codesign ${PY_CS_OPTS} ${PYTHON_EXE}
 	codesign ${PY_CS_OPTS} Frameworks/Python.framework
 
 Tarball:
-	tar cfz Frameworks.tgz Frameworks 
+	tar cfz Frameworks.tgz Frameworks
 
 Embed:
 	mkdir ${EMB_FRAMEWORK_DIR}
 	mv Frameworks/{Tcl,Tk,OpenSSL,Readline,Zlib}.framework ${EMB_FRAMEWORK_DIR}
 	cd ${LIB_DYNLOAD} ; \
-	macher clear_rpaths _tkinter.cpython-310-darwin.so ; \
-	macher add_rpath ${TCL_EMB_RPATH} _tkinter.cpython-310-darwin.so ; \
-	macher add_rpath ${TK_EMB_RPATH} _tkinter.cpython-310-darwin.so ; \
-	macher clear_rpaths _ssl.cpython-310-darwin.so ; \
-	macher add_rpath ${OPENSSL_EMB_RPATH} _ssl.cpython-310-darwin.so ; \
-	macher clear_rpaths readline.cpython-310-darwin.so ; \
-	macher add_rpath ${READLINE_EMB_RPATH} readline.cpython-310-darwin.so ; \
-	macher clear_rpaths zlib.cpython-310-darwin.so ; \
-	macher add_rpath ${ZLIB_EMB_RPATH} zlib.cpython-310-darwin.so 
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/_tkinter.cpython-310-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/_ssl.cpython-310-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/readline.cpython-310-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/zlib.cpython-310-darwin.so
+	macher clear_rpaths _tkinter.cpython-311-darwin.so ; \
+	macher add_rpath ${TCL_EMB_RPATH} _tkinter.cpython-311-darwin.so ; \
+	macher add_rpath ${TK_EMB_RPATH} _tkinter.cpython-311-darwin.so ; \
+	macher clear_rpaths _ssl.cpython-311-darwin.so ; \
+	macher add_rpath ${OPENSSL_EMB_RPATH} _ssl.cpython-311-darwin.so ; \
+	macher clear_rpaths readline.cpython-311-darwin.so ; \
+	macher add_rpath ${READLINE_EMB_RPATH} readline.cpython-311-darwin.so ; \
+	macher clear_rpaths zlib.cpython-311-darwin.so ; \
+	macher add_rpath ${ZLIB_EMB_RPATH} zlib.cpython-311-darwin.so
+	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/_tkinter.cpython-311-darwin.so
+	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/_ssl.cpython-311-darwin.so
+	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/readline.cpython-311-darwin.so
+	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/zlib.cpython-311-darwin.so
 	codesign ${PY_CS_OPTS} Frameworks/Python.framework

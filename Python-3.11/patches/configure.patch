@@ -1,0 +1,29 @@
+--- Python-3.11.1.orig/configure	2021-10-04 12:40:46.000000000 -0500
++++ Python-3.11.1/configure	2021-12-06 23:59:35.000000000 -0600
+@@ -3175,7 +3175,7 @@
+ 
+     PYTHONFRAMEWORK=Python
+     PYTHONFRAMEWORKDIR=Python.framework
+-    PYTHONFRAMEWORKIDENTIFIER=org.python.python
++    PYTHONFRAMEWORKIDENTIFIER=org.computop.python
+ 
+ fi
+ 
+@@ -3271,7 +3271,7 @@
+ 
+ else
+ 
+-	PYTHONFRAMEWORK=
++	PYTHONFRAMEWORK=Python
+ 	PYTHONFRAMEWORKDIR=no-framework
+ 	PYTHONFRAMEWORKPREFIX=
+ 	PYTHONFRAMEWORKINSTALLDIR=
+@@ -8079,7 +8079,7 @@
+ 
+ for ac_header in asm/types.h crypt.h conio.h direct.h dlfcn.h errno.h \
+ fcntl.h grp.h \
+-ieeefp.h io.h langinfo.h libintl.h process.h pthread.h \
++ieeefp.h io.h langinfo.h process.h pthread.h \
+ sched.h shadow.h signal.h stropts.h termios.h \
+ utime.h \
+ poll.h sys/devpoll.h sys/epoll.h sys/poll.h \
