@@ -1,13 +1,13 @@
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/ZLib.framework
 VERSION=1.2
-LONG_VERSION=1.2.11
+LONG_VERSION=1.2.13
 LIBZ=libz.${LONG_VERSION}.dylib
 SRC_DIR=zlib-${LONG_VERSION}
 SRC_ARCHIVE=zlib-${LONG_VERSION}.tar.gz
 RSRC_DIR=${FRAMEWORK_BUILD}/Versions/${VERSION}/Resources
-URL=https://zlib.net/zlib-1.2.11.tar.gz
-HASH=c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
+URL=https://zlib.net/zlib-1.2.13.tar.gz
+HASH=b3a24de97a8fdbc835b9833169501030b8977031bcb54b3b3ac13740f846ab30
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
     curl -O ${URL}
