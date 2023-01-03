@@ -1,3 +1,4 @@
+set -e
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/ZLib.framework
 VERSION=1.2

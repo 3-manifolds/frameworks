@@ -10,10 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Uninstall conflicting library from brew
-        run: |
-          brew unlink gettext
-
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}

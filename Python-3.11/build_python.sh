@@ -1,3 +1,4 @@
+set -e
 BASE_DIR=`pwd`
 VERSION=3.11
 LONG_VERSION=3.11.1
