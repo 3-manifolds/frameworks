@@ -3,11 +3,9 @@ set -e
 
 mkdir -p Tcl Tk
 
-BRANCH="core-8-6-branch"
-
 if [ ! -f Tcl.fossil ]; then
     fossil clone http://core.tcl.tk/tcl Tcl.fossil
-    fossil open --workdir Tcl Tcl.fossil $BRANCH
+    fossil open --workdir Tcl Tcl.fossil core-8-branch
 else
     fossil pull -R Tcl.fossil
     cd Tcl
@@ -17,7 +15,7 @@ fi
 
 if [ ! -f Tk.fossil ]; then
     fossil clone http://core.tcl.tk/tk Tk.fossil
-    fossil open --workdir Tk Tk.fossil $BRANCH
+    fossil open --workdir Tk Tk.fossil main
 else
     fossil pull -R Tk.fossil
     cd Tk
