@@ -7,10 +7,10 @@ SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
 HASH=5c986b2865979b393aa50a31c65b64e8
 FRAMEWORKS=${BASE_DIR}/../Frameworks
-TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/8.6/Headers
-TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/8.6/Tcl
-TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/8.6/Headers
-TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/8.6/Tk
+TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Headers
+TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Tcl
+TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/8.7/Headers
+TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/8.7/Tk
 OPENSSL=${FRAMEWORKS}/OpenSSL.framework/Versions/3.0
 RSRC_DIR=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}/Resources
 
