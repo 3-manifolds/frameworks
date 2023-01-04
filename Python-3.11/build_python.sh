@@ -1,3 +1,4 @@
+set -e
 BASE_DIR=`pwd`
 VERSION=3.11
 LONG_VERSION=3.11.1
@@ -46,10 +47,15 @@ LDFLAGS="${LDFLAGS} -L${FRAMEWORKS}/Readline.framework/Versions/Current/lib"
 # are not understood my macOS 10.14 and earlier.
 LDFLAGS="${LDFLAGS} -Wl,-platform_version,macos,10.9,11.0"
 export LDFLAGS
+# Use our custom versions of Tck and Tk
+TCLTK_CFLAGS="-I${TCL_HEADERS} -I${TK_HEADERS}"
+TCLTK_LIBS="${TCL_LIB} ${TK_LIB}"
+export TCLTK_CFLAGS
+export TCLTK_LIBS
+#
 ./configure \
     --prefix=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}    \
-    --with-tcltk-includes="-I${TCL_HEADERS} -I${TK_HEADERS}"          \
-    --with-tcltk-libs="${TCL_LIB} ${TK_LIB}" --with-openssl=${OPENSSL}
+    --with-openssl=${OPENSSL}
 make -j4
 make install
 make libpython${VERSION}.dylib
