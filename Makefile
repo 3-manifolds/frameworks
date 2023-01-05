@@ -38,6 +38,7 @@ Setup:
 	mkdir -p Frameworks
 
 Zlib:
+	set -e ; \
 	cd ZLib ; \
 	rm -rf dist ; \
 	bash build_zlib.sh ; \
@@ -48,6 +49,7 @@ Zlib:
 	${MACHER} set_id @rpath/libz.dylib Frameworks/${ZLIB}
 
 Readline:
+	set -e ; \
 	cd Readline ; \
 	rm -rf dist ; \
 	bash build_readline.sh ; \
@@ -58,6 +60,7 @@ Readline:
 	${MACHER} set_id @rpath/libreadline.dylib Frameworks/${READLINE}
 
 OpenSSL:
+	set -e ; \
 	cd OpenSSL ; \
 	rm -rf dist ; \
 	bash build_openssl.sh ; \
@@ -70,6 +73,7 @@ OpenSSL:
 	${MACHER} set_id @rpath/libcrypto.dylib Frameworks/${CRYPTO}
 
 TclTk:
+	set -e ; \
 	cd TclTk ; \
 	rm -rf dist ; \
 	bash build_tcltk.sh ; \
@@ -90,11 +94,13 @@ TclTk:
 	mv ${TK_VERSION_DIR}/tkConfig.sh ${TK_VERSION_DIR}/Resources
 
 Python:
+	set -e ; \
 	cd Python-3.11 ; \
 	rm -rf dist ; \
 	bash build_python.sh ; \
 	find dist/Python.framework -name '*.a' -delete ;
 ifneq ($(FOR_PY2APP),no)
+	set -e ; \
 	cd Python-3.11 ; \
 	mv dist/Python.framework/Versions/Current/lib/python3.11/lib-dynload . ; \
 	rm -rf dist/Python.framework/Versions/Current/lib/python3.11/* ; \
@@ -102,6 +108,7 @@ ifneq ($(FOR_PY2APP),no)
 endif
 	rm -rf Frameworks/Python.framework
 	mv Python-3.11/dist/Python.framework Frameworks
+	set -e ; \
 	pushd ${LIB_DYNLOAD} ; \
 	mv _ssl.cpython-311-darwin_failed.so _ssl.cpython-311-darwin.so ; \
 	mv _hashlib.cpython-311-darwin_failed.so _hashlib.cpython-311-darwin.so ; \
@@ -138,6 +145,7 @@ Tarball:
 Embed:
 	mkdir ${EMB_FRAMEWORK_DIR}
 	mv Frameworks/{Tcl,Tk,OpenSSL,Readline,Zlib}.framework ${EMB_FRAMEWORK_DIR}
+	set -e ; \
 	cd ${LIB_DYNLOAD} ; \
 	macher clear_rpaths _tkinter.cpython-311-darwin.so ; \
 	macher add_rpath ${TCL_EMB_RPATH} _tkinter.cpython-311-darwin.so ; \
