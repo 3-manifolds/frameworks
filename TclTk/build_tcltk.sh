@@ -1,4 +1,5 @@
 set -e
+cd `dirname $0`
 BASE=`pwd`
 export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
 mkdir -p ${BASE}/dist
