@@ -1,0 +1,12 @@
+diff -ru Python-3.11.1/Lib/tkinter/__init__.py Python-3.11.1.new/Lib/tkinter/__init__.py
+--- Python-3.11.1/Lib/tkinter/__init__.py	2022-12-06 13:05:27
++++ Python-3.11.1.new/Lib/tkinter/__init__.py	2023-01-07 20:52:16
+@@ -3774,7 +3774,7 @@
+ 
+     def get(self, index1, index2=None):
+         """Return the text from INDEX1 to INDEX2 (not included)."""
+-        return self.tk.call(self._w, 'get', index1, index2)
++        return str(self.tk.call(self._w, 'get', index1, index2))
+     # (Image commands are new in 8.0)
+ 
+     def image_cget(self, index, option):

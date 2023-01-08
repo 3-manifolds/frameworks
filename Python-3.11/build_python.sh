@@ -27,6 +27,7 @@ fi
 if ! [ -d ${SRC_DIR} ]; then
     tar xvfz ${SRC_ARCHIVE}
     patch -p0 < patches/configure.patch
+    patch -p0 < patches/tkinter.patch
 fi
 if ! [ -d dist ]; then
     mkdir dist
