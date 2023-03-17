@@ -2,11 +2,11 @@ set -e
 cd `dirname $0`
 BASE_DIR=`pwd`
 VERSION=3.11
-LONG_VERSION=3.11.1
+LONG_VERSION=3.11.2
 SRC_DIR=python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
-HASH=5c986b2865979b393aa50a31c65b64e8
+HASH=f6b5226ccba5ae1ca9376aaba0b0f673
 FRAMEWORKS=${BASE_DIR}/../Frameworks
 TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Headers
 TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Tcl
