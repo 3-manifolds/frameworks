@@ -61,7 +61,7 @@ jobs:
       - name: Fetch TclTk source
         run: |
           cd TclTk &&
-	  bash fetch_tcltk.sh
+          bash fetch_tcltk.sh
 
       - name: Build TclTk
         run: |
