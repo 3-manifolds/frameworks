@@ -59,7 +59,7 @@ jobs:
       # fossil repo.  Can change to "fossil_tcltk.sh" if need the very
       # latest, but this is much slower.
       - name: Fetch TclTk source
-        run: >
+        run: |
           cd TclTk &&
 	  bash fetch_tcltk.sh
 
