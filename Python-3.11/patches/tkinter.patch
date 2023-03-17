@@ -1,5 +1,5 @@
---- Python-3.11.1/Lib/tkinter/__init__.py.orig	2023-01-07 21:45:22
-+++ Python-3.11.1/Lib/tkinter/__init__.py	2023-03-14 17:10:05
+--- Python-3.11.2/Lib/tkinter/__init__.py.orig	2023-01-07 21:45:22
++++ Python-3.11.2/Lib/tkinter/__init__.py	2023-03-14 17:10:05
 @@ -974,7 +974,7 @@
          """Return None, "local" or "global" if this widget has
          no, a local or a global grab."""
