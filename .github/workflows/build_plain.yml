@@ -1,4 +1,4 @@
-name: py2app framework
+name:  plain framework
 
 on: [push]
 
