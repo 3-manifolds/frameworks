@@ -23,10 +23,12 @@ TK_LIB=${TK_VERSION_DIR}/Tk
 WISH=${TK_VERSION_DIR}/Resources/Wish.app
 LIB_DYNLOAD=Frameworks/Python.framework/Versions/3.11/lib/python3.11/lib-dynload
 PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python3.11
+RESOURCES=Frameworks/Python.framework/Versions/3.11/Resources
 DEV_ID := $(shell cat DEV_ID.txt)
 CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --entitlements entitlement.plist --force
 PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
 FOR_PY2APP=no
+FOR_RUNNER=no
 
 all: Setup Zlib Readline OpenSSL TclTk Python Sign Tarball
 
@@ -108,6 +110,10 @@ endif
 	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-311-darwin.so ; \
 	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-311-darwin.so ; \
 	popd
+ifneq ($(FOR_RUNNER),no)
+	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
+endif
+
 
 Sign:
 	rm -rf `find Frameworks -name test`
@@ -121,6 +127,10 @@ Sign:
 	codesign ${CS_OPTS} ${TCL_FRAMEWORK}
 	codesign ${CS_OPTS} ${TK_LIB}
 	codesign ${CS_OPTS} ${TK_FRAMEWORK}
+ifneq ($(FOR_RUNNER),no)
+	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app/Contents/MacOS/Python
+	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app
+endif
 	codesign ${PY_CS_OPTS} `find ${LIB_DYNLOAD} -type f -perm +o+x`
 	codesign ${PY_CS_OPTS} ${PYTHON_EXE}
 	codesign ${PY_CS_OPTS} Frameworks/Python.framework
