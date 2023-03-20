@@ -1,4 +1,4 @@
-name:  plain framework
+name:  plain framework for building app
 
 on: [push]
 
