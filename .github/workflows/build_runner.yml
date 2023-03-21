@@ -71,9 +71,9 @@ jobs:
         run: |
           make FOR_RUNNER=yes Python
       
-      - name: Sign everything
-        run: |
-          make FOR_RUNNER=yes Sign
+#      - name: Sign everything
+#        run: |
+#          make FOR_RUNNER=yes Sign
 
       - name: Assemble tarball
         run: |
