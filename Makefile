@@ -21,7 +21,8 @@ TK_FRAMEWORK=Frameworks/Tk.framework
 TK_VERSION_DIR=${TK_FRAMEWORK}/Versions/Current
 TK_LIB=${TK_VERSION_DIR}/Tk
 WISH=${TK_VERSION_DIR}/Resources/Wish.app
-LIB_DYNLOAD=Frameworks/Python.framework/Versions/3.11/lib/python3.11/lib-dynload
+PYTHON_LIB=Frameworks/Python.framework/Versions/3.11/lib/python3.11
+LIB_DYNLOAD=${PYTHON_LIB}/lib-dynload
 PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python3.11
 RESOURCES=Frameworks/Python.framework/Versions/3.11/Resources
 DEV_ID := $(shell cat DEV_ID.txt)
@@ -110,8 +111,10 @@ endif
 	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-311-darwin.so ; \
 	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-311-darwin.so ; \
 	popd
+# Things that py2app wants to install, for no apparent reason
 ifneq ($(FOR_RUNNER),no)
 	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
+        cp -R /Library/${PYTHON_LIB}/config-3.11-darwin ${PYTHON_LIB}
 endif
 
 
