@@ -112,11 +112,8 @@ endif
 	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-311-darwin.so ; \
 	popd
 # Things that py2app wants to install, for no apparent reason
-ifneq ($(FOR_RUNNER),no)
 	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
 	cp -R /Library/${PYTHON_LIB}/config-3.11-darwin ${PYTHON_LIB}
-endif
-
 
 Sign:
 	rm -rf `find Frameworks -name test`
