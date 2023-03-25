@@ -115,6 +115,9 @@ endif
 # Add things that py2app expects to find in the runner framework.
 ifneq ($(FOR_RUNNER),no)
 	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
+	xattr -rc ${RESOURCES}/Python.app
+	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app/Contents/MacOS/Python
+	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app
 	mkdir -p ${CONFIG}
 	cp /Library/${CONFIG}/Makefile ${CONFIG}/Makefile 
 endif
@@ -131,10 +134,6 @@ Sign:
 	codesign ${CS_OPTS} ${TCL_FRAMEWORK}
 	codesign ${CS_OPTS} ${TK_LIB}
 	codesign ${CS_OPTS} ${TK_FRAMEWORK}
-ifneq ($(FOR_RUNNER),no)
-	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app/Contents/MacOS/Python
-	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app
-endif
 	codesign ${PY_CS_OPTS} `find ${LIB_DYNLOAD} -type f -perm +o+x`
 	codesign ${PY_CS_OPTS} ${PYTHON_EXE}
 	codesign ${PY_CS_OPTS} Frameworks/Python.framework
