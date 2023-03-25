@@ -25,6 +25,7 @@ PYTHON_LIB=Frameworks/Python.framework/Versions/3.11/lib/python3.11
 LIB_DYNLOAD=${PYTHON_LIB}/lib-dynload
 PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python3.11
 RESOURCES=Frameworks/Python.framework/Versions/3.11/Resources
+CONFIG=${PYTHON_LIB}/config-3.11-darwin
 DEV_ID := $(shell cat DEV_ID.txt)
 CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --entitlements entitlement.plist --force
 PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
@@ -111,9 +112,11 @@ endif
 	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-311-darwin.so ; \
 	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-311-darwin.so ; \
 	popd
-# Things that py2app wants to install, for no apparent reason
+# Add things that py2app expects to find in the runner framework.
+ifneq ($(FOR_RUNNER),no)
 	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
-	cp -R /Library/${PYTHON_LIB}/config-3.11-darwin ${PYTHON_LIB}
+	cp -p /Library/${CONFIG}/Makefile ${CONFIG}/Makefile 
+endif
 
 Sign:
 	rm -rf `find Frameworks -name test`
