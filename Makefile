@@ -115,7 +115,8 @@ endif
 # Add things that py2app expects to find in the runner framework.
 ifneq ($(FOR_RUNNER),no)
 	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
-	cp -p /Library/${CONFIG}/Makefile ${CONFIG}/Makefile 
+	mkdir -p ${CONFIG}
+	cp /Library/${CONFIG}/Makefile ${CONFIG}/Makefile 
 endif
 
 Sign:
