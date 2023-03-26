@@ -1,5 +1,5 @@
 MACHER=/usr/local/bin/macher
-ZLIB=ZLib.framework/Versions/Current/lib/libz.dylib
+ZLIB=Zlib.framework/Versions/Current/lib/libz.dylib
 READLINE=Readline.framework/Versions/Current/lib/libreadline.dylib
 SSL=OpenSSL.framework/Versions/Current/lib/libssl.dylib
 CRYPTO=OpenSSL.framework/Versions/Current/lib/libcrypto.dylib
@@ -44,7 +44,7 @@ Setup:
 Zlib:
 	rm -rf Zlib/dist
 	bash Zlib/build_zlib.sh
-	find Zlib/dist/ZLib.framework -name '*.a' -delete
+	find Zlib/dist/Zlib.framework -name '*.a' -delete
 	rm -rf Frameworks/Zlib.framework
 	mv Zlib/dist/Zlib.framework Frameworks
 	${MACHER} set_id @rpath/libz.dylib Frameworks/${ZLIB}
