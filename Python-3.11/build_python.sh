@@ -1,7 +1,8 @@
 set -e
-BASE_DIR=`pwd`
 VERSION=3.11
 LONG_VERSION=3.11.2
+cd Python-${VERSION}
+BASE_DIR=`pwd`
 SRC_DIR=python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz

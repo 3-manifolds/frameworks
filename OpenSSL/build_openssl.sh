@@ -1,3 +1,4 @@
+cd OpenSSL
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/OpenSSL.framework
 VERSION=3.0
