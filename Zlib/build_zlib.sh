@@ -1,4 +1,5 @@
 set -e
+cd ZLib
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/ZLib.framework
 VERSION=1.2
@@ -26,7 +27,7 @@ ln -s ${VERSION} ${FRAMEWORK_BUILD}/Versions/Current
 ln -s Versions/Current/Headers ${FRAMEWORK_BUILD}/Headers
 ln -s Versions/Current/Resources ${FRAMEWORK_BUILD}/Resources
 ln -s include ${FRAMEWORK_BUILD}/Versions/${VERSION}/Headers
-pushd ${SRC_DIR}
+cd ${SRC_DIR}
 if [ -e Makefile ]; then
     make distclean
 fi
@@ -34,7 +35,7 @@ export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
 ./configure --prefix=${FRAMEWORK_BUILD}/Versions/${VERSION}
 make
 make install
-popd
-mkdir ${RSRC_DIR}
+cd ${BASE_DIR}
+mkdir -p ${RSRC_DIR}
 sed -e "s/%VERSION%/${VERSION}/g" -e "s/%LONG_VERSION%/${LONG_VERSION}/g" Info.plist.in > ${RSRC_DIR}/Info.plist
 
