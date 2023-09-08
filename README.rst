@@ -45,5 +45,3 @@ If you are replacing the frameworks created by py2app with these
 frameworks then you can save some space by running::
 
   make FOR_PY2APP=yes
-
-  
