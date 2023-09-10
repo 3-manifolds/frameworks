@@ -1,6 +1,6 @@
---- Python-3.11.4/configure.orig	2023-01-02 20:26:23.000000000 -0600
-+++ Python-3.11.4/configure	2023-01-02 20:24:32.000000000 -0600
-@@ -3666,7 +3666,7 @@
+--- Python-3.11.4/configure.orig	2023-06-06 17:00:27
++++ Python-3.11.4/configure	2023-09-10 17:34:34
+@@ -4057,7 +4057,7 @@
  
      PYTHONFRAMEWORK=Python
      PYTHONFRAMEWORKDIR=Python.framework
@@ -9,21 +9,33 @@
  
  fi
  
-@@ -3762,7 +3762,7 @@
+@@ -4154,7 +4154,7 @@
  
- else
+ else $as_nop
  
 -	PYTHONFRAMEWORK=
 +	PYTHONFRAMEWORK=Python
  	PYTHONFRAMEWORKDIR=no-framework
  	PYTHONFRAMEWORKPREFIX=
  	PYTHONFRAMEWORKINSTALLDIR=
-@@ -9151,7 +9151,7 @@
- # checks for header files
- for ac_header in  \
-   alloca.h asm/types.h bluetooth.h conio.h crypt.h direct.h dlfcn.h endian.h errno.h fcntl.h grp.h \
--  ieeefp.h io.h langinfo.h libintl.h libutil.h linux/auxvec.h sys/auxv.h linux/memfd.h \
-+  ieeefp.h io.h langinfo.h libutil.h linux/auxvec.h sys/auxv.h linux/memfd.h \
-   linux/random.h linux/soundcard.h \
-   linux/tipc.h linux/wait.h netdb.h netinet/in.h netpacket/packet.h poll.h process.h pthread.h pty.h \
-   sched.h setjmp.h shadow.h signal.h spawn.h stropts.h sys/audioio.h sys/bsdtty.h sys/devpoll.h \
+@@ -10012,14 +10012,14 @@
+ if test "x$ac_cv_header_langinfo_h" = xyes
+ then :
+   printf "%s\n" "#define HAVE_LANGINFO_H 1" >>confdefs.h
+-
+-fi
+-ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
+-if test "x$ac_cv_header_libintl_h" = xyes
+-then :
+-  printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
+ 
+ fi
++# ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
++# if test "x$ac_cv_header_libintl_h" = xyes
++# then :
++#   printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
++#
++# fi
+ ac_fn_c_check_header_compile "$LINENO" "libutil.h" "ac_cv_header_libutil_h" "$ac_includes_default"
+ if test "x$ac_cv_header_libutil_h" = xyes
+ then :
