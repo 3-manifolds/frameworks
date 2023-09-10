@@ -2,7 +2,7 @@ cd OpenSSL
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/OpenSSL.framework
 VERSION=3.0
-LONG_VERSION=3.0.0
+LONG_VERSION=3.0.10
 LIBSSL=libssl.${VERSION}.dylib
 LIBCRYPTO=libcrypto.${VERSION}.dylib
 SRC_DIR=openssl-${LONG_VERSION}
@@ -10,7 +10,7 @@ SRC_ARCHIVE=openssl-${LONG_VERSION}.tar.gz
 CNF_DIR=Versions/${VERSION}/config
 RSRC_DIR=dist/OpenSSL.framework/Versions/${VERSION}/Resources
 URL=https://www.openssl.org/source/${SRC_ARCHIVE}
-HASH=59eedfcb46c25214c9bd37ed6078297b4df01d012267fe9e9eee31f61bc70536
+HASH=1761d4f5b13a1028b9b6f3d4b8e17feb0cedc9370f6afe61d7193d2cdce83323
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
     curl -O ${URL}
