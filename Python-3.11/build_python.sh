@@ -12,7 +12,7 @@ TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/8.6/Headers
 TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/8.6/Tcl
 TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/8.6/Headers
 TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/8.6/Tk
-OPENSSL=${FRAMEWORKS}/OpenSSL.framework/Versions/3.0
+OPENSSL=${FRAMEWORKS}/OpenSSL.framework/Versions/3.0.10
 RSRC_DIR=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}/Resources
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
