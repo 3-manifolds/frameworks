@@ -36,6 +36,8 @@ all: Setup Zlib Readline OpenSSL TclTk Python Sign Tarball
 
 embedded: Setup Zlib Readline OpenSSL TclTk Python Sign Embed
 
+unsigned: Setup Zlib Readline OpenSSL TclTk Python
+
 .PHONY: Setup Zlib Readline OpenSSL TclTk Python Sign Tarball Embed
 
 Setup:
