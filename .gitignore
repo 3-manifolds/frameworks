@@ -4,6 +4,7 @@ Frameworks
 *.tar.gz
 *.tgz
 dist
+lib
 OpenSSL/openssl*
 Python-3.*/Python*
 Readline/readline*
