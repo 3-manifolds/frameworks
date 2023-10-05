@@ -1,5 +1,21 @@
 *** configure	Mon Oct  2 06:48:14 2023
---- configure.new	Thu Oct  5 14:05:30 2023
+--- configure.new	Thu Oct  5 15:46:15 2023
+***************
+*** 10551,10563 ****
+    printf "%s\n" "#define HAVE_LANGINFO_H 1" >>confdefs.h
+  
+  fi
+- ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
+- if test "x$ac_cv_header_libintl_h" = xyes
+- then :
+-   printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
+- 
+- fi
+- ac_fn_c_check_header_compile "$LINENO" "libutil.h" "ac_cv_header_libutil_h" "$ac_includes_default"
+  if test "x$ac_cv_header_libutil_h" = xyes
+  then :
+    printf "%s\n" "#define HAVE_LIBUTIL_H 1" >>confdefs.h
+--- 10551,10556 ----
 ***************
 *** 28081,28087 ****
   
@@ -9,7 +25,7 @@
   
   fi
   
---- 28081,28087 ----
+--- 28074,28080 ----
   
   else $as_nop
   
