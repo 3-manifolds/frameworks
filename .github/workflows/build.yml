@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Remove the Homebrew gettext
+        # Otherwise Python tries to use the Intel lib for Arm.
+        run: |
+          brew remove gettext
+
       - name: Install macher
         run: |
           wget https://github.com/culler/macher/releases/latest/download/macher
