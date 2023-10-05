@@ -1,0 +1,19 @@
+*** configure	Mon Oct  2 06:48:14 2023
+--- configure.new	Thu Oct  5 14:05:30 2023
+***************
+*** 28081,28087 ****
+  
+  else $as_nop
+  
+!   rpath_arg="-Wl,-rpath="
+  
+  fi
+  
+--- 28081,28087 ----
+  
+  else $as_nop
+  
+!   rpath_arg="-rpath "
+  
+  fi
+  
