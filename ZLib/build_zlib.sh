@@ -2,14 +2,14 @@ set -e
 cd `dirname $0`
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/ZLib.framework
-VERSION=1.2
-LONG_VERSION=1.2.13
+VERSION=1.3
+LONG_VERSION=1.3
 LIBZ=libz.${LONG_VERSION}.dylib
 SRC_DIR=zlib-${LONG_VERSION}
 SRC_ARCHIVE=zlib-${LONG_VERSION}.tar.gz
 RSRC_DIR=${FRAMEWORK_BUILD}/Versions/${VERSION}/Resources
-URL=https://zlib.net/zlib-1.2.13.tar.gz
-HASH=b3a24de97a8fdbc835b9833169501030b8977031bcb54b3b3ac13740f846ab30
+URL=https://zlib.net/zlib-1.3.tar.gz
+HASH=ff0ba4c292013dbc27530b3a81e1f9a813cd39de01ca5e0f8bf355702efa593e
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
     curl -O ${URL}
