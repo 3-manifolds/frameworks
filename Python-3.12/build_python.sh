@@ -106,11 +106,16 @@ ZLIB_RPATH=${FRAMEWORKS_REL}/Zlib.framework/Versions/Current/lib
 TCL_RPATH=${FRAMEWORKS_REL}/Tcl.framework/Versions/Current
 TK_RPATH=${FRAMEWORKS_REL}/Tk.framework/Versions/Current
 pushd ${PREFIX}/lib/python${VERSION}/lib-dynload
-install_name_tool -rpath ${BUILD_RPATH} ${ZLIB_RPATH} zlib.cpython-${VRSN}-darwin.so
-install_name_tool -rpath ${BUILD_RPATH} ${ZLIB_RPATH} binascii.cpython-${VRSN}-darwin.so
-install_name_tool -rpath ${BUILD_RPATH} ${OPENSSL_RPATH} _ssl.cpython-${VRSN}-darwin.so
-install_name_tool -rpath ${BUILD_RPATH} ${OPENSSL_RPATH} _hashlib.cpython-${VRSN}-darwin.so
-install_name_tool -rpath ${BUILD_RPATH} ${READLINE_RPATH} readline.cpython-${VRSN}-darwin.so
-install_name_tool -add_rpath ${TCL_RPATH} _tkinter.cpython-${VRSN}-darwin.so
-install_name_tool -add_rpath ${TK_RPATH} _tkinter.cpython-${VRSN}-darwin.so
+macher clear_rpaths zlib.cpython-${VRSN}-darwin.so
+macher clear_rpaths binascii.cpython-${VRSN}-darwin.so
+macher clear_rpaths _ssl.cpython-${VRSN}-darwin.so
+macher clear_rpaths _hashlib.cpython-${VRSN}-darwin.so
+macher clear_rpaths readline.cpython-${VRSN}-darwin.so
+macher add_rpath ${ZLIB_RPATH} zlib.cpython-${VRSN}-darwin.so
+macher add_rpath ${ZLIB_RPATH} binascii.cpython-${VRSN}-darwin.so
+macher add_rpath ${OPENSSL_RPATH} _ssl.cpython-${VRSN}-darwin.so
+macher add_rpath ${OPENSSL_RPATH} _hashlib.cpython-${VRSN}-darwin.so
+macher add_rpath ${READLINE_RPATH} readline.cpython-${VRSN}-darwin.so
+macher add_rpath ${TCL_RPATH} _tkinter.cpython-${VRSN}-darwin.so
+macher add_rpath ${TK_RPATH} _tkinter.cpython-${VRSN}-darwin.so
 popd
