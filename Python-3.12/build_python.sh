@@ -30,6 +30,7 @@ if ! [ -d ${SRC_DIR} ]; then
     tar xfz ${SRC_ARCHIVE}
     pushd ${SRC_DIR}
     patch -p0 < ../patches/configure.patch
+    patch -p0 < ../patches/tkinter.patch
     popd
 fi
 if ! [ -d dist ]; then
