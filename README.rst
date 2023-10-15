@@ -1,13 +1,24 @@
 Frameworks
 ==========
 
-This project is a kit for building a set of relocatable signed
-frameworks suitable for inserting into an application bundle which
-uses python for the main program.  The frameworks include
-Python.framework, as well as frameworks needed for basic python
-extensions based on external libraries.  These include
+This project is a kit for building a set of relocatable frameworks
+which includes a Python framework as well as frameworks needed for
+basic python extensions based on external libraries.  These include
 Readline.framework, Tcl.framework, Tk.framework, OpenSSL.framework,
-and ZLib.framework.  The current version of Python used here is 3.10.
+and ZLib.framework.  There is a branch of this repo for each supported
+Python version.  Pre-compiled frameworks are available as releases.
+
+For Python 3.12 or later these frameworks are not signed.  If the
+frameworks are embedded into an Application bundle, then each
+framework should be signed after signing all of the .dylib or .so
+files which it contains.  Then the app itself can be signed.
+
+Since the frameworks are not signed, the python3 executable in the
+Python framework can be used when debugging Python extension modules
+with lldb, which is not allowed to attach to a signed executable.
+Since they are completely relocatable, they can be installed in
+~/Library to make an unsigned version of python3 available whenever
+needed.
 
 Tcl/Tk
 ======
@@ -25,25 +36,9 @@ In addition to the XCode command line tools, you will need::
 
   https://github.com/culler/macher
 
-Signing
-=======
-
-In order to sign the frameworks you need to create a file DEV_ID.txt
-in the top level directory.  The file should have one line which
-contains the codesign identity/certificate that you will be using to
-sign the frameworks.  A "self-signed" cert can be created using
-KeyChain Access.
-
 Building
 ========
 
 Run make in the top level directory to create all of the frameworks
 and move them into the Frameworks directory.  That directory may be
-moved into an application bundle as Some.app/Contents/Frameworks.
-
-If you are replacing the frameworks created by py2app with these
-frameworks then you can save some space by running::
-
-  make FOR_PY2APP=yes
-
-  
+moved or copied into an application bundle as Some.app/Contents/Frameworks.
