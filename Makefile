@@ -75,4 +75,5 @@ Python:
 	mv Python-${PYTHON_VERSION}/dist/Python.framework Frameworks
 
 Tarball:
-	tar cfz Frameworks.tgz Frameworks
+	tar cfz Frameworks-${PYTHON_VERSION}.tgz Frameworks
+	shasum Frameworks-${PYTHON_VERSION}.tgz > Frameworks-${PYTHON_VERSION}.sha1 

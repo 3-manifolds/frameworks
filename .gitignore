@@ -3,6 +3,7 @@ Frameworks
 *.tar
 *.tar.gz
 *.tgz
+*.sha1
 dist
 lib
 OpenSSL/openssl*

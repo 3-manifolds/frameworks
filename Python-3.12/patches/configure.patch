@@ -1,5 +1,22 @@
-*** configure	Mon Oct  2 06:48:14 2023
---- configure.new	Thu Oct  5 15:46:15 2023
+*** configure	Fri Oct 27 08:50:50 2023
+--- configure.new	Fri Oct 27 08:59:12 2023
+***************
+*** 4243,4249 ****
+  
+  
+  
+! printf "%s\n" "#define _PYTHONFRAMEWORK \"${PYTHONFRAMEWORK}\"" >>confdefs.h
+  
+  
+  # Set name for machine-dependent library files
+--- 4243,4249 ----
+  
+  
+  
+! printf "%s\n" "#define _PYTHONFRAMEWORK \"Python\"" >>confdefs.h
+  
+  
+  # Set name for machine-dependent library files
 ***************
 *** 10551,10563 ****
     printf "%s\n" "#define HAVE_LANGINFO_H 1" >>confdefs.h
