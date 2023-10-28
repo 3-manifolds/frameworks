@@ -1,0 +1,104 @@
+*** Lib/tkinter/__init__.py.orig	Fri Oct  6 09:28:29 2023
+--- Lib/tkinter/__init__.py	Fri Oct  6 10:38:48 2023
+***************
+*** 974,980 ****
+          """Return None, "local" or "global" if this widget has
+          no, a local or a global grab."""
+          status = self.tk.call('grab', 'status', self._w)
+!         if status == 'none': status = None
+          return status
+  
+      def option_add(self, pattern, value, priority = None):
+--- 974,980 ----
+          """Return None, "local" or "global" if this widget has
+          no, a local or a global grab."""
+          status = self.tk.call('grab', 'status', self._w)
+!         if status == 'none' or not status: status = None
+          return status
+  
+      def option_add(self, pattern, value, priority = None):
+***************
+*** 1086,1092 ****
+      def winfo_atom(self, name, displayof=0):
+          """Return integer which represents atom NAME."""
+          args = ('winfo', 'atom') + self._displayof(displayof) + (name,)
+!         return self.tk.getint(self.tk.call(args))
+  
+      def winfo_atomname(self, id, displayof=0):
+          """Return name of atom with identifier ID."""
+--- 1086,1092 ----
+      def winfo_atom(self, name, displayof=0):
+          """Return integer which represents atom NAME."""
+          args = ('winfo', 'atom') + self._displayof(displayof) + (name,)
+!         return self.tk.getint(self.tk.call(args)) or None
+  
+      def winfo_atomname(self, id, displayof=0):
+          """Return name of atom with identifier ID."""
+***************
+*** 3107,3113 ****
+  
+      def get(self):
+          """Return the text."""
+!         return self.tk.call(self._w, 'get')
+  
+      def icursor(self, index):
+          """Insert cursor at INDEX."""
+--- 3107,3113 ----
+  
+      def get(self):
+          """Return the text."""
+!         return str(self.tk.call(self._w, 'get'))
+  
+      def icursor(self, index):
+          """Insert cursor at INDEX."""
+***************
+*** 3256,3262 ****
+      def index(self, index):
+          """Return index of item identified with INDEX."""
+          i = self.tk.call(self._w, 'index', index)
+!         if i == 'none': return None
+          return self.tk.getint(i)
+  
+      def insert(self, index, *elements):
+--- 3256,3262 ----
+      def index(self, index):
+          """Return index of item identified with INDEX."""
+          i = self.tk.call(self._w, 'index', index)
+!         if i == 'none' or not i: return None
+          return self.tk.getint(i)
+  
+      def insert(self, index, *elements):
+***************
+*** 3774,3780 ****
+  
+      def get(self, index1, index2=None):
+          """Return the text from INDEX1 to INDEX2 (not included)."""
+!         return self.tk.call(self._w, 'get', index1, index2)
+      # (Image commands are new in 8.0)
+  
+      def image_cget(self, index, option):
+--- 3774,3780 ----
+  
+      def get(self, index1, index2=None):
+          """Return the text from INDEX1 to INDEX2 (not included)."""
+!         return str(self.tk.call(self._w, 'get', index1, index2))
+      # (Image commands are new in 8.0)
+  
+      def image_cget(self, index, option):
+***************
+*** 4278,4284 ****
+  
+      def get(self):
+          """Returns the spinbox's string"""
+!         return self.tk.call(self._w, 'get')
+  
+      def icursor(self, index):
+          """Alter the position of the insertion cursor.
+--- 4278,4284 ----
+  
+      def get(self):
+          """Returns the spinbox's string"""
+!         return str(self.tk.call(self._w, 'get'))
+  
+      def icursor(self, index):
+          """Alter the position of the insertion cursor.

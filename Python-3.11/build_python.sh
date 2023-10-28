@@ -29,8 +29,8 @@ fi
 if ! [ -d ${SRC_DIR} ]; then
     tar xfz ${SRC_ARCHIVE}
     pushd ${SRC_DIR}
-#    patch -p0 < ../patches/configure.patch
-#    patch -p0 < ../patches/tkinter.patch
+    patch -p0 < ../patches/configure.patch
+    patch -p0 < ../patches/tkinter.patch
     popd
 fi
 if ! [ -d dist ]; then
@@ -82,7 +82,6 @@ PREFIX=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}
 # Create a temporary lib dir for the build.
 ######
 # Add the lib dir as an rpath so modules will load during the build
-# patch -b -p0 < ../patches/makefile.patch
 make -j4 BUILD_RPATH=${BUILD_RPATH}
 make install
 make libpython${VERSION}.dylib

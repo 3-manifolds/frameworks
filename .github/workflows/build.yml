@@ -1,0 +1,55 @@
+name:  Python-3.12 framework
+
+on: [push]
+
+jobs:
+  build_frameworks:
+    name: Build Frameworks
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install macher
+        run: |
+          wget https://github.com/culler/macher/releases/latest/download/macher
+          chmod +x macher
+          mv macher /usr/local/bin
+          
+      - name: Build Zlib
+        run: |
+          make Setup Zlib
+
+      - name: Build Readline
+        run: |
+          make Readline
+
+      - name: Build OpenSSL
+        run: |
+          make OpenSSL
+
+      # There is some delay in mirroring to github from the actual
+      # fossil repo.  Can change to "fossil_tcltk.sh" if need the very
+      # latest, but this is much slower.
+      - name: Fetch TclTk source
+        run: >
+          cd TclTk &&
+          bash git_tcltk.sh
+
+      - name: Build TclTk
+        run: |
+          make TclTk
+
+      - name: Build Python
+        run: |
+          make Python
+      
+      - name: Assemble tarball
+        run: |
+          make Tarball
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Frameworks-3.11
+          path: ./Frameworks-3.11.sha1
+          path: ./Frameworks-3.11.tgz
