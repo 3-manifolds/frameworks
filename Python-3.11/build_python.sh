@@ -79,10 +79,8 @@ PREFIX=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}
     --prefix=${PREFIX} \
     --with-openssl=${OPENSSL} \
     --with-openssl-rpath=${BUILD_RPATH}
-# Create a temporary lib dir for the build.
-######
 # Add the lib dir as an rpath so modules will load during the build
-make -j4 BUILD_RPATH=${BUILD_RPATH}
+make BUILD_RPATH=${BUILD_RPATH}
 make install
 make libpython${VERSION}.dylib
 popd
