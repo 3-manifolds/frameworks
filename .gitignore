@@ -3,9 +3,11 @@ Frameworks
 *.tar
 *.tar.gz
 *.tgz
+*.sha1
 dist
 OpenSSL/openssl*
 Python-3.*/Python*
+Python-3.*/lib
 Readline/readline*
 TclTk/Tcl*
 TclTk/Tk*
