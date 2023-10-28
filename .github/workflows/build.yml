@@ -51,5 +51,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Frameworks-3.11
-          path: ./Frameworks-3.11.sha1
-          path: ./Frameworks-3.11.tgz
+          path: |
+            ./Frameworks-3.11.sha1
+            ./Frameworks-3.11.tgz
