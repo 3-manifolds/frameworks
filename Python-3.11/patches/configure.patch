@@ -1,41 +1,52 @@
---- Python-3.11.4/configure.orig	2023-06-06 17:00:27
-+++ Python-3.11.4/configure	2023-09-10 17:34:34
-@@ -4057,7 +4057,7 @@
- 
-     PYTHONFRAMEWORK=Python
-     PYTHONFRAMEWORKDIR=Python.framework
--    PYTHONFRAMEWORKIDENTIFIER=org.python.python
-+    PYTHONFRAMEWORKIDENTIFIER=org.computop.python
- 
- fi
- 
-@@ -4154,7 +4154,7 @@
- 
- else $as_nop
- 
--	PYTHONFRAMEWORK=
-+	PYTHONFRAMEWORK=Python
- 	PYTHONFRAMEWORKDIR=no-framework
- 	PYTHONFRAMEWORKPREFIX=
- 	PYTHONFRAMEWORKINSTALLDIR=
-@@ -10012,14 +10012,14 @@
- if test "x$ac_cv_header_langinfo_h" = xyes
- then :
-   printf "%s\n" "#define HAVE_LANGINFO_H 1" >>confdefs.h
--
--fi
--ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
--if test "x$ac_cv_header_libintl_h" = xyes
--then :
--  printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
- 
- fi
-+# ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
-+# if test "x$ac_cv_header_libintl_h" = xyes
-+# then :
-+#   printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
-+#
-+# fi
- ac_fn_c_check_header_compile "$LINENO" "libutil.h" "ac_cv_header_libutil_h" "$ac_includes_default"
- if test "x$ac_cv_header_libutil_h" = xyes
- then :
+*** configure	Fri Oct 27 08:50:50 2023
+--- configure.new	Fri Oct 27 08:59:12 2023
+***************
+*** 4243,4249 ****
+  
+  
+  
+! printf "%s\n" "#define _PYTHONFRAMEWORK \"${PYTHONFRAMEWORK}\"" >>confdefs.h
+  
+  
+  # Set name for machine-dependent library files
+--- 4243,4249 ----
+  
+  
+  
+! printf "%s\n" "#define _PYTHONFRAMEWORK \"Python\"" >>confdefs.h
+  
+  
+  # Set name for machine-dependent library files
+***************
+*** 10551,10563 ****
+    printf "%s\n" "#define HAVE_LANGINFO_H 1" >>confdefs.h
+  
+  fi
+- ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
+- if test "x$ac_cv_header_libintl_h" = xyes
+- then :
+-   printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
+- 
+- fi
+- ac_fn_c_check_header_compile "$LINENO" "libutil.h" "ac_cv_header_libutil_h" "$ac_includes_default"
+  if test "x$ac_cv_header_libutil_h" = xyes
+  then :
+    printf "%s\n" "#define HAVE_LIBUTIL_H 1" >>confdefs.h
+--- 10551,10556 ----
+***************
+*** 28081,28087 ****
+  
+  else $as_nop
+  
+!   rpath_arg="-Wl,-rpath="
+  
+  fi
+  
+--- 28074,28080 ----
+  
+  else $as_nop
+  
+!   rpath_arg="-rpath "
+  
+  fi
+  

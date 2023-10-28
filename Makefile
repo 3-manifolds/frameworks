@@ -1,19 +1,8 @@
 MACHER=/usr/local/bin/macher
-ZLIB=ZLib.framework/Versions/Current/lib/libz.dylib
+ZLIB=Zlib.framework/Versions/Current/lib/libz.dylib
 READLINE=Readline.framework/Versions/Current/lib/libreadline.dylib
 SSL=OpenSSL.framework/Versions/Current/lib/libssl.dylib
 CRYPTO=OpenSSL.framework/Versions/Current/lib/libcrypto.dylib
-OPENSSL_RPATH=@loader_path/../../../../../../OpenSSL.framework/Versions/Current/lib
-OPENSSL_EMB_RPATH=@loader_path/../../../Frameworks/OpenSSL.framework/Versions/Current/lib
-READLINE_RPATH=@loader_path/../../../../../../Readline.framework/Versions/Current/lib
-READLINE_EMB_RPATH=@loader_path/../../../Frameworks/Readline.framework/Versions/Current/lib
-ZLIB_RPATH=@loader_path/../../../../../../Zlib.framework/Versions/Current/lib
-ZLIB_EMB_RPATH=@loader_path/../../../Frameworks/Zlib.framework/Versions/Current/lib
-TCL_RPATH=@loader_path/../../../../../../Tcl.framework/Versions/Current
-TCL_EMB_RPATH=@loader_path/../../../Frameworks/Tcl.framework/Versions/Current
-TK_RPATH=@loader_path/../../../../../../Tk.framework/Versions/Current
-TK_EMB_RPATH=@loader_path/../../../Frameworks/Tk.framework/Versions/Current
-EMB_FRAMEWORK_DIR=Frameworks/Python.framework/Versions/Current/Frameworks
 TCL_FRAMEWORK=Frameworks/Tcl.framework
 TCL_VERSION_DIR=${TCL_FRAMEWORK}/Versions/Current
 TCL_LIB=${TCL_VERSION_DIR}/Tcl
@@ -21,22 +10,16 @@ TK_FRAMEWORK=Frameworks/Tk.framework
 TK_VERSION_DIR=${TK_FRAMEWORK}/Versions/Current
 TK_LIB=${TK_VERSION_DIR}/Tk
 WISH=${TK_VERSION_DIR}/Resources/Wish.app
-PYTHON_LIB=Frameworks/Python.framework/Versions/3.11/lib/python3.11
+PYTHON_VERSION=3.11
+PYTHON_LIB=Frameworks/Python.framework/Versions/${PYTHON_VERSION}/lib/python${PYTHON_VERSION}
 LIB_DYNLOAD=${PYTHON_LIB}/lib-dynload
-PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python3.11
-RESOURCES=Frameworks/Python.framework/Versions/3.11/Resources
-CONFIG=${PYTHON_LIB}/config-3.11-darwin
-DEV_ID := $(shell cat DEV_ID.txt)
-CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --entitlements entitlement.plist --force
-PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
-FOR_PY2APP=no
-FOR_RUNNER=no
+PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python${PYTHON_VERSION}
+RESOURCES=Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Resources
+CONFIG=${PYTHON_LIB}/config-${PYTHON_VERSION}-darwin
 
-all: Setup Zlib Readline OpenSSL TclTk Python Sign Tarball
+all: Setup Zlib Readline OpenSSL TclTk Python
 
-embedded: Setup Zlib Readline OpenSSL TclTk Python Sign Embed
-
-.PHONY: Setup Zlib Readline OpenSSL TclTk Python Sign Tarball Embed
+.PHONY: Setup Zlib Readline OpenSSL TclTk Python Tarball 
 
 Setup:
 	mkdir -p Frameworks
@@ -44,7 +27,7 @@ Setup:
 Zlib:
 	rm -rf Zlib/dist
 	bash Zlib/build_zlib.sh
-	find Zlib/dist/ZLib.framework -name '*.a' -delete
+	find Zlib/dist/Zlib.framework -name '*.a' -delete
 	rm -rf Frameworks/Zlib.framework
 	mv Zlib/dist/Zlib.framework Frameworks
 	${MACHER} set_id @rpath/libz.dylib Frameworks/${ZLIB}
@@ -76,6 +59,7 @@ TclTk:
 	rm -rf ${TK_FRAMEWORK}
 	mv TclTk/dist/Frameworks/Tcl.framework Frameworks
 	mv TclTk/dist/Frameworks/Tk.framework Frameworks
+	cp TclTk/Tcl/libtommath/tommath.h Frameworks/Tcl.framework/Headers
 	chmod +w ${TCL_LIB} ${TK_LIB}
 	${MACHER} set_id @rpath/Tcl ${TCL_LIB}
 	${MACHER} set_id @rpath/Tk ${TK_LIB}
@@ -84,79 +68,12 @@ TclTk:
 	mv ${TCL_VERSION_DIR}/{tclConfig.sh,tclooConfig.sh} ${TCL_VERSION_DIR}/Resources
 	rm ${TK_FRAMEWORK}/{PrivateHeaders,Tk,tkConfig.sh}
 	mv ${TK_VERSION_DIR}/tkConfig.sh ${TK_VERSION_DIR}/Resources
-
 Python:
-	rm -rf Python-3.11/dist
-	bash Python-3.11/build_python.sh
-	find Python-3.11/dist/Python.framework -name '*.a' -delete
-ifneq ($(FOR_PY2APP),no)
-	set -e ; \
-	cd Python-3.11 ; \
-	mv dist/Python.framework/Versions/Current/lib/python3.11/lib-dynload . ; \
-	rm -rf dist/Python.framework/Versions/Current/lib/python3.11/* ; \
-	mv lib-dynload dist/Python.framework/Versions/Current/lib/python3.11
-endif
+	bash Python-${PYTHON_VERSION}/build_python.sh
+	find Python-${PYTHON_VERSION}/dist/Python.framework -name '*.a' -delete
 	rm -rf Frameworks/Python.framework
-	mv Python-3.11/dist/Python.framework Frameworks
-	set -e ; \
-	pushd ${LIB_DYNLOAD} ; \
-	mv _ssl.cpython-311-darwin_failed.so _ssl.cpython-311-darwin.so ; \
-	mv _hashlib.cpython-311-darwin_failed.so _hashlib.cpython-311-darwin.so ; \
-	mv readline.cpython-311-darwin_failed.so readline.cpython-311-darwin.so ; \
-	mv _tkinter.cpython-311-darwin_failed.so _tkinter.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${ZLIB_RPATH} zlib.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${ZLIB_RPATH} binascii.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${OPENSSL_RPATH} _ssl.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${OPENSSL_RPATH} _hashlib.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${READLINE_RPATH} readline.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${TCL_RPATH} _tkinter.cpython-311-darwin.so ; \
-	${MACHER} add_rpath ${TK_RPATH} _tkinter.cpython-311-darwin.so ; \
-	popd
-# Add things that py2app expects to find in the runner framework.
-ifneq ($(FOR_RUNNER),no)
-	cp -R /Library/${RESOURCES}/Python.app ${RESOURCES}
-	xattr -rc ${RESOURCES}/Python.app
-	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app/Contents/MacOS/Python
-	codesign ${PY_CS_OPTS} ${RESOURCES}/Python.app
-	mkdir -p ${CONFIG}
-	cp /Library/${CONFIG}/Makefile ${CONFIG}/Makefile 
-endif
-
-Sign:
-	rm -rf `find Frameworks -name test`
-	codesign ${CS_OPTS} `find Frameworks/Zlib.framework -type f -perm +o+x`
-	codesign ${CS_OPTS} Frameworks/Zlib.framework
-	codesign ${CS_OPTS} `find Frameworks/Readline.framework -type f -perm +o+x`
-	codesign ${CS_OPTS} Frameworks/Readline.framework
-	codesign ${CS_OPTS} `find Frameworks/OpenSSL.framework -type f -perm +o+x`
-	codesign ${CS_OPTS} Frameworks/OpenSSL.framework
-	codesign ${CS_OPTS} ${TCL_LIB}
-	codesign ${CS_OPTS} ${TCL_FRAMEWORK}
-	codesign ${CS_OPTS} ${TK_LIB}
-	codesign ${CS_OPTS} ${TK_FRAMEWORK}
-	codesign ${PY_CS_OPTS} `find ${LIB_DYNLOAD} -type f -perm +o+x`
-	codesign ${PY_CS_OPTS} ${PYTHON_EXE}
-	codesign ${PY_CS_OPTS} Frameworks/Python.framework
+	mv Python-${PYTHON_VERSION}/dist/Python.framework Frameworks
 
 Tarball:
-	tar cfz Frameworks.tgz Frameworks
-
-Embed:
-	mkdir ${EMB_FRAMEWORK_DIR}
-	mv Frameworks/{Tcl,Tk,OpenSSL,Readline,Zlib}.framework ${EMB_FRAMEWORK_DIR}
-	set -e ; \
-	cd ${LIB_DYNLOAD} ; \
-	macher clear_rpaths _tkinter.cpython-311-darwin.so ; \
-	macher add_rpath ${TCL_EMB_RPATH} _tkinter.cpython-311-darwin.so ; \
-	macher add_rpath ${TK_EMB_RPATH} _tkinter.cpython-311-darwin.so ; \
-	macher clear_rpaths _ssl.cpython-311-darwin.so ; \
-	macher add_rpath ${OPENSSL_EMB_RPATH} _ssl.cpython-311-darwin.so ; \
-	macher clear_rpaths readline.cpython-311-darwin.so ; \
-	macher add_rpath ${READLINE_EMB_RPATH} readline.cpython-311-darwin.so ; \
-	macher clear_rpaths zlib.cpython-311-darwin.so ; \
-	macher add_rpath ${ZLIB_EMB_RPATH} zlib.cpython-311-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/_tkinter.cpython-311-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/_ssl.cpython-311-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/readline.cpython-311-darwin.so
-	codesign ${PY_CS_OPTS} ${LIB_DYNLOAD}/zlib.cpython-311-darwin.so
-	codesign ${PY_CS_OPTS} Frameworks/Python.framework
+	tar cfz Frameworks-${PYTHON_VERSION}.tgz Frameworks
+	shasum Frameworks-${PYTHON_VERSION}.tgz > Frameworks-${PYTHON_VERSION}.sha1 
