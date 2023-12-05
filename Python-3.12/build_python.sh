@@ -9,10 +9,10 @@ SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
 HASH=d6eda3e1399cef5dfde7c4f319b0596c
 FRAMEWORKS=${BASE_DIR}/../Frameworks
-TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Headers
-TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Tcl
-TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/8.7/Headers
-TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/8.7/Tk
+TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Headers
+TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Tcl
+TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/9.0/Headers
+TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/9.0/Tk
 OPENSSL=${FRAMEWORKS}/OpenSSL.framework/Versions/Current
 READLINE=${FRAMEWORKS}/Readline.framework/Versions/Current
 RSRC_DIR=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}/Resources
@@ -31,6 +31,7 @@ if ! [ -d ${SRC_DIR} ]; then
     pushd ${SRC_DIR}
     patch -p0 < ../patches/configure.patch
     patch -p0 < ../patches/tkinter.patch
+    patch -p0 < ../patches/_tkinter.patch
     popd
 fi
 if ! [ -d dist ]; then
