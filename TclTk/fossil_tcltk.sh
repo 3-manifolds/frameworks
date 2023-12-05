@@ -5,7 +5,7 @@ mkdir -p Tcl Tk
 
 if [ ! -f Tcl.fossil ]; then
     fossil clone http://core.tcl.tk/tcl Tcl.fossil
-    fossil open --workdir Tcl Tcl.fossil core-8-branch
+    fossil open --workdir Tcl Tcl.fossil main
 else
     fossil pull -R Tcl.fossil
     cd Tcl

@@ -4,7 +4,7 @@ set -e
 if [ ! -d Tcl ]; then
     git clone https://github.com/tcltk/tcl Tcl
     cd Tcl
-    git checkout core-8-branch
+    git checkout main
 else
     cd Tcl
     git pull
