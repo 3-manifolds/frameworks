@@ -1,52 +1,19 @@
-*** configure	Fri Oct 27 08:50:50 2023
---- configure.new	Fri Oct 27 08:59:12 2023
+*** configure.orig	Sun Apr 28 12:12:24 2024
+--- configure	Sun Apr 28 12:13:32 2024
 ***************
-*** 4243,4249 ****
+*** 23168,23174 ****
   
-  
-  
-! printf "%s\n" "#define _PYTHONFRAMEWORK \"${PYTHONFRAMEWORK}\"" >>confdefs.h
-  
-  
-  # Set name for machine-dependent library files
---- 4243,4249 ----
-  
-  
-  
-! printf "%s\n" "#define _PYTHONFRAMEWORK \"Python\"" >>confdefs.h
-  
-  
-  # Set name for machine-dependent library files
-***************
-*** 10551,10563 ****
-    printf "%s\n" "#define HAVE_LANGINFO_H 1" >>confdefs.h
-  
-  fi
-- ac_fn_c_check_header_compile "$LINENO" "libintl.h" "ac_cv_header_libintl_h" "$ac_includes_default"
-- if test "x$ac_cv_header_libintl_h" = xyes
-- then :
--   printf "%s\n" "#define HAVE_LIBINTL_H 1" >>confdefs.h
-- 
-- fi
-- ac_fn_c_check_header_compile "$LINENO" "libutil.h" "ac_cv_header_libutil_h" "$ac_includes_default"
-  if test "x$ac_cv_header_libutil_h" = xyes
-  then :
-    printf "%s\n" "#define HAVE_LIBUTIL_H 1" >>confdefs.h
---- 10551,10556 ----
-***************
-*** 28081,28087 ****
-  
-  else $as_nop
+  else
   
 !   rpath_arg="-Wl,-rpath="
   
   fi
   
---- 28074,28080 ----
+--- 23168,23174 ----
   
-  else $as_nop
+  else
   
-!   rpath_arg="-rpath "
+!   rpath_arg="-Wl,-rpath,"
   
   fi
   
