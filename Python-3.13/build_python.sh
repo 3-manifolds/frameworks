@@ -1,13 +1,13 @@
 set -e
 cd `dirname $0`
 BASE_DIR=`pwd`
-VERSION=3.12
-LONG_VERSION=3.12.6
-VRSN=312
+VERSION=3.13
+LONG_VERSION=3.13.0
+VRSN=313
 SRC_DIR=python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
-HASH=c2f1dd5c8807ee50b778684b7958ee28
+HASH=c29f37220520ec6075fc37d4c62e178b
 FRAMEWORKS=${BASE_DIR}/../Frameworks
 TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Headers
 TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Tcl
@@ -28,7 +28,7 @@ if [[ ${ACTUAL_HASH} != ${HASH} ]]; then
 fi
 if ! [ -d ${SRC_DIR} ]; then
     tar xfz ${SRC_ARCHIVE}
-    patch -p0 < patches/tkinter.patch
+    ##patch -p0 < patches/tkinter.patch
 fi
 if ! [ -d dist ]; then
     mkdir dist
@@ -49,8 +49,8 @@ pushd ${SRC_DIR}
 if [ -e Makefile ]; then
     make distclean
 fi
-MACOSX_DEPLOYMENT_TARGET=10.9
-CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
+MACOSX_DEPLOYMENT_TARGET=10.13
+CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.13"
 CFLAGS="${CFLAGS} -I${FRAMEWORKS}/ZLib.framework/Headers"
 CFLAGS="${CFLAGS} -I${FRAMEWORKS}/Readline.framework/Headers"
 export CFLAGS
@@ -60,7 +60,7 @@ LDFLAGS="${LDFLAGS} -L${FRAMEWORKS}/Readline.framework/Versions/Current/lib"
 # limit the linker to SDK 11.0 features to prevent adding the
 # LD_DYLD_CHAINED_FIXUPS and LD_DYLD_EXPORTS_TRIE load command which
 # are not understood by macOS 10.14 and earlier.
-LDFLAGS="${LDFLAGS} -Wl,-platform_version,macos,10.9,11.0"
+LDFLAGS="${LDFLAGS} -Wl,-platform_version,macos,10.13,11.0"
 export LDFLAGS
 # Use our custom versions of Tcl and Tk
 BUILD_RPATH=${BASE_DIR}/lib
@@ -90,7 +90,7 @@ ln -s Versions/Current/Resources dist/Python.framework/Resources
 cp ${SRC_DIR}/libpython${VERSION}.dylib dist/Python.framework/Versions/${VERSION}/Python
 rm -rf dist/Python.framework/Versions/${VERSION}/bin/*-config
 rm -rf dist/Python.framework/Versions/${VERSION}/lib/python${VERSION}/config-${VERSION}-darwin
-#gcc -mmacosx-version-min=10.9 -install_name dist/Python.framework/Python -shared -o dist/Python.framework/Versions/${VERSION}/Python -Wl,-force_load,dist/Python.framework/Versions/${VERSION}/lib/libpython${VERSION}.a
+#gcc -mmacosx-version-min=10.13 -install_name dist/Python.framework/Python -shared -o dist/Python.framework/Versions/${VERSION}/Python -Wl,-force_load,dist/Python.framework/Versions/${VERSION}/lib/libpython${VERSION}.a
 #ln -s Versions/Current/Python dist/Python.framework/Python
 mkdir -p ${RSRC_DIR}
 sed -e "s/%VERSION%/${VERSION}/g" -e "s/%LONG_VERSION%/${LONG_VERSION}/g" Info.plist.in > ${RSRC_DIR}/Info.plist
