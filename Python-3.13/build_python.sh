@@ -28,7 +28,9 @@ if [[ ${ACTUAL_HASH} != ${HASH} ]]; then
 fi
 if ! [ -d ${SRC_DIR} ]; then
     tar xfz ${SRC_ARCHIVE}
-    ##patch -p0 < patches/tkinter.patch
+    cd ${SRC_DIR}
+    patch -p1 < ../patches/tkinter.patch
+    cd ..
 fi
 if ! [ -d dist ]; then
     mkdir dist
