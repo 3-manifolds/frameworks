@@ -1,19 +1,20 @@
 cd `dirname $0`
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/OpenSSL.framework
-VERSION=3.0
-LONG_VERSION=3.0.0
+VERSION=3.4
+LONG_VERSION=3.4.0
 LIBSSL=libssl.${VERSION}.dylib
 LIBCRYPTO=libcrypto.${VERSION}.dylib
 SRC_DIR=openssl-${LONG_VERSION}
 SRC_ARCHIVE=openssl-${LONG_VERSION}.tar.gz
 CNF_DIR=Versions/${VERSION}/config
 RSRC_DIR=dist/OpenSSL.framework/Versions/${VERSION}/Resources
-URL=https://www.openssl.org/source/${SRC_ARCHIVE}
-HASH=59eedfcb46c25214c9bd37ed6078297b4df01d012267fe9e9eee31f61bc70536
+URL=https://github.com/openssl/openssl/releases/download/openssl-3.4.0/openssl-3.4.0.tar.gz
+#URL=https://github.com/openssl/openssl/releases/download/${SRC_ARCHIVE}
+HASH=e15dda82fe2fe8139dc2ac21a36d4ca01d5313c75f99f46c4e8a27709b7294bf
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
-    curl -O ${URL}
+    curl -L -O ${URL}
 fi
 ACTUAL_HASH=`/usr/bin/shasum -a 256 ${SRC_ARCHIVE}  | cut -f 1 -d' '`
 if [[ ${ACTUAL_HASH} != ${HASH} ]]; then
