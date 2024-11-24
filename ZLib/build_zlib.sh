@@ -3,13 +3,13 @@ cd `dirname $0`
 BASE_DIR=`pwd`
 FRAMEWORK_BUILD=${BASE_DIR}/dist/ZLib.framework
 VERSION=1.3
-LONG_VERSION=1.3
+LONG_VERSION=1.3.1
 LIBZ=libz.${LONG_VERSION}.dylib
 SRC_DIR=zlib-${LONG_VERSION}
 SRC_ARCHIVE=zlib-${LONG_VERSION}.tar.gz
 RSRC_DIR=${FRAMEWORK_BUILD}/Versions/${VERSION}/Resources
-URL=https://github.com/madler/zlib/releases/download/v1.3/zlib-1.3.tar.gz
-HASH=ff0ba4c292013dbc27530b3a81e1f9a813cd39de01ca5e0f8bf355702efa593e
+URL=https://www.zlib.net/zlib-${LONG_VERSION}.tar.gz
+HASH=9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23
 
 if ! [ -e ${SRC_ARCHIVE} ]; then
     curl -O ${URL}
