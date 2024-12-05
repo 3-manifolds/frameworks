@@ -17,28 +17,12 @@ PYTHON_EXE=Frameworks/Python.framework/Versions/Current/bin/python${PYTHON_VERSI
 RESOURCES=Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Resources
 CONFIG=${PYTHON_LIB}/config-${PYTHON_VERSION}-darwin
 
-all: Setup Zlib Readline OpenSSL TclTk Python
+all: Setup OpenSSL TclTk Python
 
-.PHONY: Setup Zlib Readline OpenSSL TclTk Python Tarball 
+.PHONY: Setup OpenSSL TclTk Python Tarball 
 
 Setup:
 	mkdir -p Frameworks
-
-Zlib:
-	rm -rf Zlib/dist
-	bash Zlib/build_zlib.sh
-	find Zlib/dist/Zlib.framework -name '*.a' -delete
-	rm -rf Frameworks/Zlib.framework
-	mv Zlib/dist/Zlib.framework Frameworks
-	${MACHER} set_id @rpath/libz.dylib Frameworks/${ZLIB}
-
-Readline:
-	rm -rf Readline/dist
-	bash Readline/build_readline.sh
-	find Readline/dist/Readline.framework -name '*.a' -delete
-	rm -rf Frameworks/Readline.framework
-	mv Readline/dist/Readline.framework Frameworks
-	${MACHER} set_id @rpath/libreadline.dylib Frameworks/${READLINE}
 
 OpenSSL:
 	rm -rf OpenSSL/dist
@@ -49,6 +33,8 @@ OpenSSL:
 	${MACHER} set_id @rpath/libssl.dylib Frameworks/${SSL}
 	${MACHER} edit_libpath @loader_path/libcrypto.dylib Frameworks/${SSL}
 	${MACHER} set_id @rpath/libcrypto.dylib Frameworks/${CRYPTO}
+	python3 -m notabot.sign Frameworks/OpenSSL.framework/Versions/Current/lib/libcrypto.dylib
+	python3 -m notabot.sign Frameworks/OpenSSL.framework/Versions/Current/lib/libssl.dylib
 
 TclTk:
 	rm -rf TclTk/dist
@@ -67,12 +53,16 @@ TclTk:
 	mv ${TCL_VERSION_DIR}/{tclConfig.sh,tclooConfig.sh} ${TCL_VERSION_DIR}/Resources
 	rm ${TK_FRAMEWORK}/{PrivateHeaders,Tk,tkConfig.sh}
 	mv ${TK_VERSION_DIR}/tkConfig.sh ${TK_VERSION_DIR}/Resources
+	python3 -m notabot.sign Frameworks/Tcl.framework/Versions/Current/Tcl
+	python3 -m notabot.sign Frameworks/Tk.framework/Versions/Current/Tk
 
 Python:
 	bash Python-${PYTHON_VERSION}/build_python.sh
 	find Python-${PYTHON_VERSION}/dist/Python.framework -name '*.a' -delete
 	rm -rf Frameworks/Python.framework
 	mv Python-${PYTHON_VERSION}/dist/Python.framework Frameworks
+	python3 -m notabot.sign ${LIB_DYNLOAD}/_ssl.cpython-313-darwin.so
+	python3 -m notabot.sign ${LIB_DYNLOAD}/_tkinter.cpython-313-darwin.so
 
 Tarball:
 	tar cfz Frameworks-${PYTHON_VERSION}.tgz Frameworks

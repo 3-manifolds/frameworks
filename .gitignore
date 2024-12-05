@@ -1,4 +1,4 @@
-DEV_ID.txt
+notabot.cfg
 Frameworks
 *.tar
 *.tar.gz
@@ -6,10 +6,9 @@ Frameworks
 *.sha1
 dist
 lib
-OpenSSL/openssl*
 Python-3.*/Python*
-Readline/readline*
+OpenSSL/openssl-*
 TclTk/Tcl*
 TclTk/Tk*
-ZLib/zlib*
+
 
