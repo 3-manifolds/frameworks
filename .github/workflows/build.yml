@@ -22,8 +22,8 @@ jobs:
           mv macher /usr/local/bin
 
       - name: Install notabot
-       run: |
-         python3 -m pip install notabot
+        run: |
+          python3 -m pip install notabot
 
       - name: Fetch TclTk source
         run: >
@@ -65,7 +65,7 @@ jobs:
       - name: Build the frameworks
         run: |
           make
-	  make Tarball
+          make Tarball
 
       - uses: actions/upload-artifact@v4
         with:
