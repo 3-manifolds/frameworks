@@ -21,7 +21,7 @@ jobs:
           chmod +x macher
           mv macher /usr/local/bin
 
-      -name: Install notabot
+      - name: Install notabot
        run: |
          python3 -m pip install notabot
 
