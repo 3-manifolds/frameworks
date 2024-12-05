@@ -110,6 +110,7 @@ macher clear_rpaths binascii.cpython-${VRSN}-darwin.so
 macher clear_rpaths _ssl.cpython-${VRSN}-darwin.so
 macher clear_rpaths _hashlib.cpython-${VRSN}-darwin.so
 macher clear_rpaths readline.cpython-${VRSN}-darwin.so
+macher clear_rpaths _tkinter.cpython-${VRSN}-darwin.so
 macher add_rpath ${ZLIB_RPATH} zlib.cpython-${VRSN}-darwin.so
 macher add_rpath ${ZLIB_RPATH} binascii.cpython-${VRSN}-darwin.so
 macher add_rpath ${OPENSSL_RPATH} _ssl.cpython-${VRSN}-darwin.so
