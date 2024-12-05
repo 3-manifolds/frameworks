@@ -23,7 +23,7 @@ jobs:
 
       - name: Install notabot
         run: |
-          python3 -m pip install notabot
+          python3 -m pip install notabot>=1.3.2
 
       - name: Fetch TclTk source
         run: >
