@@ -4,9 +4,9 @@ BASE_DIR=`pwd`
 VERSION=3.13
 LONG_VERSION=3.13.0
 VRSN=313
-SRC_DIR=python-${LONG_VERSION}
+SRC_DIR=Python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
-URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
+URL=https://www.python.org/ftp/python/${LONG_VERSION}/${SRC_ARCHIVE}
 HASH=c29f37220520ec6075fc37d4c62e178b
 FRAMEWORKS=${BASE_DIR}/../Frameworks
 TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Headers
@@ -102,3 +102,4 @@ macher add_rpath ${OPENSSL_RPATH} _hashlib.cpython-${VRSN}-darwin.so
 macher add_rpath ${TCL_RPATH} _tkinter.cpython-${VRSN}-darwin.so
 macher add_rpath ${TK_RPATH} _tkinter.cpython-${VRSN}-darwin.so
 popd
+
