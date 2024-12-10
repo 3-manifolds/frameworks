@@ -1,0 +1,15 @@
+--- Modules/tkinter.h.orig	2024-02-06 15:21:21
++++ Modules/tkinter.h	2024-02-29 09:02:42
+@@ -6,6 +6,12 @@
+  * Be sure to include tk.h before including this header so
+  * TK_HEX_VERSION is properly defined. */
+ 
++/*
++ * Tk 9 removes the declaration of Tcl_AppInit in tcl.h.
++ */
++
++int Tcl_AppInit(Tcl_Interp *interp);
++
+ /* TK_RELEASE_LEVEL is always one of the following:
+  *  TCL_ALPHA_RELEASE   0
+  *  TCL_BETA_RELEASE    1

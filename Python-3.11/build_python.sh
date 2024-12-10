@@ -2,17 +2,17 @@ set -e
 cd `dirname $0`
 BASE_DIR=`pwd`
 VERSION=3.11
-LONG_VERSION=3.11.4
+LONG_VERSION=3.11.8
 VRSN=311
 SRC_DIR=python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
-HASH=bf6ec50f2f3bfa6ffbdb385286f2c628
+HASH=7fb0bfaa2f6aae4aadcdb51abe957825
 FRAMEWORKS=${BASE_DIR}/../Frameworks
-TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Headers
-TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/8.7/Tcl
-TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/8.7/Headers
-TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/8.7/Tk
+TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/Current/Headers
+TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/Current/Tcl
+TK_HEADERS=${FRAMEWORKS}/Tk.framework/Versions/Current/Headers
+TK_LIB=${FRAMEWORKS}/Tk.framework/Versions/Current/Tk
 OPENSSL=${FRAMEWORKS}/OpenSSL.framework/Versions/Current
 READLINE=${FRAMEWORKS}/Readline.framework/Versions/Current
 RSRC_DIR=${BASE_DIR}/dist/Python.framework/Versions/${VERSION}/Resources
@@ -31,6 +31,8 @@ if ! [ -d ${SRC_DIR} ]; then
     pushd ${SRC_DIR}
     patch -p0 < ../patches/configure.patch
     patch -p0 < ../patches/tkinter.patch
+    patch -p0 < ../patches/_tkinter.patch
+    patch -p0 < ../patches/tkinter_h.patch
     popd
 fi
 if ! [ -d dist ]; then

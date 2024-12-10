@@ -48,7 +48,7 @@ jobs:
         run: |
           make Tarball
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Frameworks-3.11
           path: |

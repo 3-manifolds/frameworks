@@ -1,0 +1,45 @@
+--- Modules/_tkinter.c.orig	2024-02-06 15:21:21
++++ Modules/_tkinter.c	2024-02-29 09:02:33
+@@ -492,7 +492,7 @@
+ static PyObject *
+ unicodeFromTclObj(Tcl_Obj *value)
+ {
+-    int len;
++    Tcl_Size len;
+ #if USE_TCL_UNICODE
+     int byteorder = NATIVE_BYTEORDER;
+     const Tcl_UniChar *u = Tcl_GetUnicodeFromObj(value, &len);
+@@ -1150,7 +1150,7 @@
+     }
+ 
+     if (value->typePtr == tkapp->ByteArrayType) {
+-        int size;
++        Tcl_Size size;
+         char *data = (char*)Tcl_GetByteArrayFromObj(value, &size);
+         return PyBytes_FromStringAndSize(data, size);
+     }
+@@ -1184,7 +1184,7 @@
+     }
+ 
+     if (value->typePtr == tkapp->ListType) {
+-        int size;
++        Tcl_Size size;
+         int i, status;
+         PyObject *elem;
+         Tcl_Obj *tcl_elem;
+@@ -2139,13 +2139,13 @@
+ /*[clinic end generated code: output=13b51d34386d36fb input=2b2e13351e3c0b53]*/
+ {
+     char *list;
+-    int argc;
++    Tcl_Size argc;
+     const char **argv;
+     PyObject *v;
+     int i;
+ 
+     if (PyTclObject_Check(arg)) {
+-        int objc;
++        Tcl_Size objc;
+         Tcl_Obj **objv;
+         if (Tcl_ListObjGetElements(Tkapp_Interp(self),
+                                    ((PyTclObject*)arg)->value,
