@@ -4,6 +4,7 @@ BASE_DIR=`pwd`
 VERSION=3.11
 LONG_VERSION=3.11.8
 VRSN=311
+TCLTK_VERSION=9.0
 SRC_DIR=python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
