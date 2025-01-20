@@ -21,7 +21,7 @@ all: Setup OpenSSL TclTk Python
 
 .PHONY: Setup OpenSSL TclTk Python Tarball 
 
-Setup:
+Setup: notabot.cfg
 	mkdir -p Frameworks
 
 OpenSSL:
