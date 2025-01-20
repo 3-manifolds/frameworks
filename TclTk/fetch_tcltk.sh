@@ -4,6 +4,8 @@ set -e
 TCL_VERSION=9.0.1
 TK_VERSION=9.0.1
 
+rm -rf Tcl Tk
+mkdir Tcl Tk
 curl -L -O https://prdownloads.sourceforge.net/tcl/tcl$TCL_VERSION-src.tar.gz
 curl -L -O https://prdownloads.sourceforge.net/tcl/tk$TK_VERSION-src.tar.gz
 
