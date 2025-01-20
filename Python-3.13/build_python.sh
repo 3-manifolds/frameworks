@@ -3,11 +3,19 @@ cd `dirname $0`
 BASE_DIR=`pwd`
 VERSION=3.13
 LONG_VERSION=3.13.1
+<<<<<<< Updated upstream
+=======
+HASH=6820ac52d77af870f795dabc64583234
+>>>>>>> Stashed changes
 VRSN=313
 SRC_DIR=Python-${LONG_VERSION}
 SRC_ARCHIVE=Python-${LONG_VERSION}.tgz
+<<<<<<< Updated upstream
 URL=https://www.python.org/ftp/python/${LONG_VERSION}/${SRC_ARCHIVE}
 HASH=6820ac52d77af870f795dabc64583234
+=======
+URL=https://www.python.org/ftp/python/${LONG_VERSION}/Python-${LONG_VERSION}.tgz
+>>>>>>> Stashed changes
 FRAMEWORKS=${BASE_DIR}/../Frameworks
 TCL_HEADERS=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Headers
 TCL_LIB=${FRAMEWORKS}/Tcl.framework/Versions/9.0/Tcl

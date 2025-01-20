@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 diff -ru Orig/Lib/test/test_tkinter/test_misc.py Python-3.13.1/Lib/test/test_tkinter/test_misc.py
 --- Orig/Lib/test/test_tkinter/test_misc.py	2024-12-03 11:59:52
 +++ Python-3.13.1/Lib/test/test_tkinter/test_misc.py	2024-12-12 12:57:15
+=======
+diff -ru Python-3.13.1/Lib/test/test_tkinter/test_misc.py Python-3.13.1_new/Lib/test/test_tkinter/test_misc.py
+--- Python-3.13.1/Lib/test/test_tkinter/test_misc.py	2024-12-03 11:59:52
++++ Python-3.13.1_new/Lib/test/test_tkinter/test_misc.py	2025-01-19 09:57:16
+>>>>>>> Stashed changes
 @@ -66,9 +66,10 @@
          f.tk_busy_forget()
          self.assertFalse(f.tk_busy_status())
@@ -24,9 +30,15 @@ diff -ru Orig/Lib/test/test_tkinter/test_misc.py Python-3.13.1/Lib/test/test_tki
              f.tk_busy_cget('cursor')
  
      def test_tk_setPalette(self):
+<<<<<<< Updated upstream
 diff -ru Orig/Lib/test/test_tkinter/test_widgets.py Python-3.13.1/Lib/test/test_tkinter/test_widgets.py
 --- Orig/Lib/test/test_tkinter/test_widgets.py	2024-12-03 11:59:52
 +++ Python-3.13.1/Lib/test/test_tkinter/test_widgets.py	2024-12-12 12:57:15
+=======
+diff -ru Python-3.13.1/Lib/test/test_tkinter/test_widgets.py Python-3.13.1_new/Lib/test/test_tkinter/test_widgets.py
+--- Python-3.13.1/Lib/test/test_tkinter/test_widgets.py	2024-12-03 11:59:52
++++ Python-3.13.1_new/Lib/test/test_tkinter/test_widgets.py	2025-01-19 09:57:16
+>>>>>>> Stashed changes
 @@ -7,9 +7,13 @@
  from test.test_tkinter.support import (requires_tk, tk_version,
                                    get_tk_patchlevel, widget_eq,
@@ -491,9 +503,15 @@ diff -ru Orig/Lib/test/test_tkinter/test_widgets.py Python-3.13.1/Lib/test/test_
          self.checkParam(widget, 'pady', -2, expected=expected)
  
      def test_configure_width(self):
+<<<<<<< Updated upstream
 diff -ru Orig/Lib/test/test_tkinter/widget_tests.py Python-3.13.1/Lib/test/test_tkinter/widget_tests.py
 --- Orig/Lib/test/test_tkinter/widget_tests.py	2024-12-03 11:59:52
 +++ Python-3.13.1/Lib/test/test_tkinter/widget_tests.py	2024-12-12 12:57:15
+=======
+diff -ru Python-3.13.1/Lib/test/test_tkinter/widget_tests.py Python-3.13.1_new/Lib/test/test_tkinter/widget_tests.py
+--- Python-3.13.1/Lib/test/test_tkinter/widget_tests.py	2024-12-03 11:59:52
++++ Python-3.13.1_new/Lib/test/test_tkinter/widget_tests.py	2025-01-19 09:57:16
+>>>>>>> Stashed changes
 @@ -6,17 +6,16 @@
                                    pixels_conv, tcl_obj_eq)
  import test.support
@@ -791,9 +809,15 @@ diff -ru Orig/Lib/test/test_tkinter/widget_tests.py Python-3.13.1/Lib/test/test_
      # This decorator adds test_configure_xxx methods from source classes for
      # every xxx option in the OPTIONS class attribute if they are not defined
      # explicitly.
+<<<<<<< Updated upstream
 diff -ru Orig/Lib/test/test_ttk/test_style.py Python-3.13.1/Lib/test/test_ttk/test_style.py
 --- Orig/Lib/test/test_ttk/test_style.py	2024-12-03 11:59:52
 +++ Python-3.13.1/Lib/test/test_ttk/test_style.py	2024-12-12 12:57:15
+=======
+diff -ru Python-3.13.1/Lib/test/test_ttk/test_style.py Python-3.13.1_new/Lib/test/test_ttk/test_style.py
+--- Python-3.13.1/Lib/test/test_ttk/test_style.py	2024-12-03 11:59:52
++++ Python-3.13.1_new/Lib/test/test_ttk/test_style.py	2025-01-19 09:57:16
+>>>>>>> Stashed changes
 @@ -205,7 +205,8 @@
          style = self.style
          with self.assertRaises(IndexError):
@@ -804,9 +828,15 @@ diff -ru Orig/Lib/test/test_ttk/test_style.py Python-3.13.1/Lib/test/test_ttk/te
              style.element_create('plain.newelem', 'from', 'spam')
  
      def test_element_create_image(self):
+<<<<<<< Updated upstream
 diff -ru Orig/Lib/test/test_ttk/test_widgets.py Python-3.13.1/Lib/test/test_ttk/test_widgets.py
 --- Orig/Lib/test/test_ttk/test_widgets.py	2024-12-03 11:59:52
 +++ Python-3.13.1/Lib/test/test_ttk/test_widgets.py	2024-12-12 13:00:29
+=======
+diff -ru Python-3.13.1/Lib/test/test_ttk/test_widgets.py Python-3.13.1_new/Lib/test/test_ttk/test_widgets.py
+--- Python-3.13.1/Lib/test/test_ttk/test_widgets.py	2024-12-03 11:59:52
++++ Python-3.13.1_new/Lib/test/test_ttk/test_widgets.py	2025-01-19 10:01:07
+>>>>>>> Stashed changes
 @@ -8,7 +8,7 @@
  from test.test_tkinter.support import (
      AbstractTkTest, requires_tk, tk_version, get_tk_patchlevel,
@@ -898,6 +928,7 @@ diff -ru Orig/Lib/test/test_ttk/test_widgets.py Python-3.13.1/Lib/test/test_ttk/
  class EntryTest(AbstractWidgetTest, unittest.TestCase):
      OPTIONS = (
          'background', 'class', 'cursor',
+<<<<<<< Updated upstream
 @@ -338,6 +344,8 @@
      )
      # bpo-27313: macOS Tk/Tcl may or may not report 'Entry.field'.
@@ -907,6 +938,17 @@ diff -ru Orig/Lib/test/test_ttk/test_widgets.py Python-3.13.1/Lib/test/test_ttk/
  
      def setUp(self):
          super().setUp()
+=======
+@@ -336,6 +342,8 @@
+         'show', 'state', 'style', 'takefocus', 'textvariable',
+         'validate', 'validatecommand', 'width', 'xscrollcommand',
+     )
++   _rounds_pixels = False
++   _clipped = {}
+     # bpo-27313: macOS Tk/Tcl may or may not report 'Entry.field'.
+     IDENTIFY_AS = {'Entry.field', 'textarea'}
+ 
+>>>>>>> Stashed changes
 @@ -371,8 +379,12 @@
          self.assertRaises(tkinter.TclError, self.entry.bbox, None)
  
@@ -1153,9 +1195,15 @@ diff -ru Orig/Lib/test/test_ttk/test_widgets.py Python-3.13.1/Lib/test/test_ttk/
  
      def create(self, **kwargs):
          return ttk.Sizegrip(self.root, **kwargs)
+<<<<<<< Updated upstream
 diff -ru Orig/Lib/tkinter/ttk.py Python-3.13.1/Lib/tkinter/ttk.py
 --- Orig/Lib/tkinter/ttk.py	2024-12-03 11:59:52
 +++ Python-3.13.1/Lib/tkinter/ttk.py	2024-12-12 12:57:15
+=======
+diff -ru Python-3.13.1/Lib/tkinter/ttk.py Python-3.13.1_new/Lib/tkinter/ttk.py
+--- Python-3.13.1/Lib/tkinter/ttk.py	2024-12-03 11:59:52
++++ Python-3.13.1_new/Lib/tkinter/ttk.py	2025-01-19 09:57:16
+>>>>>>> Stashed changes
 @@ -321,6 +321,8 @@
      elif hasattr(val, 'typename'): # some other (single) Tcl object
          val = _convert_stringval(val)
@@ -1165,9 +1213,15 @@ diff -ru Orig/Lib/tkinter/ttk.py Python-3.13.1/Lib/tkinter/ttk.py
      return val
  
  def tclobjs_to_py(adict):
+<<<<<<< Updated upstream
 diff -ru Orig/Modules/_tkinter.c Python-3.13.1/Modules/_tkinter.c
 --- Orig/Modules/_tkinter.c	2024-12-03 11:59:52
 +++ Python-3.13.1/Modules/_tkinter.c	2024-12-12 12:57:15
+=======
+diff -ru Python-3.13.1/Modules/_tkinter.c Python-3.13.1_new/Modules/_tkinter.c
+--- Python-3.13.1/Modules/_tkinter.c	2024-12-03 11:59:52
++++ Python-3.13.1_new/Modules/_tkinter.c	2025-01-19 09:57:16
+>>>>>>> Stashed changes
 @@ -325,6 +325,7 @@
      const Tcl_ObjType *ListType;
      const Tcl_ObjType *StringType;
