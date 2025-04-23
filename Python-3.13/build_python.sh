@@ -51,9 +51,10 @@ if [ -e Makefile ]; then
     make distclean
 fi
 MACOSX_DEPLOYMENT_TARGET=10.13
-CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.13"
+#CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.13"
+CFLAGS="-mmacosx-version-min=10.13"
 export CFLAGS
-LDFLAGS="-arch arm64 -arch x86_64"
+#LDFLAGS="-arch arm64 -arch x86_64"
 # limit the linker to SDK 11.0 features to prevent adding the
 # LD_DYLD_CHAINED_FIXUPS and LD_DYLD_EXPORTS_TRIE load command which
 # are not understood by macOS 10.14 and earlier.

@@ -28,7 +28,8 @@ pushd ${SRC_DIR}
 if [ -e Makefile ]; then
     make distclean
 fi
-export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
+#export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
+export CFLAGS="-mmacosx-version-min=10.9"
 ./config --openssldir=/Library/Frameworks/OpenSSL.framework/Versions/${VERSION} --prefix=/Library/Frameworks/OpenSSL.framework/Versions/${VERSION} no-asm
 sed -i '.orig' -e 's|DESTDIR=|DESTDIR=../dist|g' Makefile
 # Unfortunately building with -j6 on M1 fails sporadically
