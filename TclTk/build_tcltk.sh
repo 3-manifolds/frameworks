@@ -2,7 +2,7 @@ set -e
 cd `dirname $0`
 BASE=`pwd`
 . fetch_tcltk.sh
-export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.9"
+export CFLAGS="-arch arm64 -arch x86_64 -mmacosx-version-min=10.13"
 mkdir -p ${BASE}/dist
 make -j6 -C Tcl/macosx install-embedded SUBFRAMEWORK=1 DESTDIR=${BASE}/dist \
      DYLIB_INSTALL_DIR=@rpath

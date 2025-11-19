@@ -1,5 +1,7 @@
 notabot.cfg
 Frameworks
+__pycache__
+*~
 *.tar
 *.tar.gz
 *.tgz

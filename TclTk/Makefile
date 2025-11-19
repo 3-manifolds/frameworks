@@ -8,13 +8,10 @@ TK_FRAMEWORK=Frameworks/Tk.framework
 TK_VERSION_DIR=${TK_FRAMEWORK}/Versions/Current
 TK_LIB=${TK_VERSION_DIR}/Tk
 WISH="${TK_VERSION_DIR}/Resources/Wish.app"
-DEV_ID := $(shell source ../IDs.sh && echo $$DEV_ID)
-CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --entitlements entitlement.plist --force
-PY_CS_OPTS=-v -s ${DEV_ID} --timestamp --options runtime --force
 
 all: Setup TclTk
 
-.PHONY: Setup TclTk Sign
+.PHONY: Setup TclTk
 
 Setup:
 	mkdir -p Frameworks
@@ -22,7 +19,7 @@ Setup:
 TclTk:
 	rm -rf ${TCL_FRAMEWORK}
 	rm -rf ${TK_FRAMEWORK}
-	rm -rf build
+	rm -rf dist
 	bash build_tcltk.sh
 	mv dist/Frameworks/Tcl.framework Frameworks
 	mv dist/Frameworks/Tk.framework Frameworks

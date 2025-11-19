@@ -13,7 +13,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.14'
 
       - name: Install macher
         run: |
@@ -24,11 +24,6 @@ jobs:
       - name: Install notabot
         run: |
           python3 -m pip install notabot>=1.3.2
-
-      - name: Fetch TclTk source
-        run: >
-          cd TclTk &&
-          bash fetch_tcltk.sh
 
       - name: Install the Apple certificate and provisioning profile
         env:

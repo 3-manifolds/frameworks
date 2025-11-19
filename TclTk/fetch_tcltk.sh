@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-TCL_VERSION=9.0.1
-TK_VERSION=9.0.1
+TCL_VERSION=9.0.2
+TK_VERSION=9.0.2
 
 rm -rf Tcl Tk
 mkdir Tcl Tk
