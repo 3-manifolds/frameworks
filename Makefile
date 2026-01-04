@@ -52,7 +52,7 @@ Python:
 	mv Python-${PYTHON_VERSION}/dist/Python.framework Frameworks
 	python3 strip_framework.py Frameworks/Python.framework
 	rm ${PYTHON_LIB}/lib-dynload/*test*
-	rm -rf ${PYTHON_LIB}/{test,unittest,idle}
+	rm -rf ${PYTHON_LIB}/{test,idle}
 	rm -rf ${PYTHON_LIB}/turtle*
 	rm -rf ${PYTHON_LIB}/idlelib
 	rm -rf ${PYTHON_LIB}/pydoc*
