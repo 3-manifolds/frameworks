@@ -55,9 +55,7 @@ Python:
 	rm -rf ${PYTHON_LIB}/{test,idle}
 	rm -rf ${PYTHON_LIB}/turtle*
 	rm -rf ${PYTHON_LIB}/idlelib
-	rm -rf ${PYTHON_LIB}/pydoc*
 	rm -rf ${PYTHON_BIN}/idle*
-	rm -rf ${PYTHON_BIN}/pydoc*
 	python3 -m notabot.sign Frameworks/Python.framework
 
 Tarball:
